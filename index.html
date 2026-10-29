@@ -1,0 +1,2785 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIMATUR-MR 2026 - Evaluasi Maturitas Manajemen Risiko</title>
+  <meta name="description" content="Sistem Informasi Penilaian & Evaluasi Tingkat Kematangan (Maturitas) Manajemen Risiko 2026 berdasarkan instrumen evaluasi pengawasan internal." />
+  <meta property="og:title" content="SIMATUR-MR 2026 - Evaluasi Maturitas Manajemen Risiko" />
+  <meta property="og:description" content="Sistem Informasi Penilaian & Evaluasi Tingkat Kematangan (Maturitas) Manajemen Risiko 2026 berdasarkan instrumen evaluasi pengawasan internal." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              300: '#7cc5fb',
+              400: '#36a6f6',
+              500: '#0c87eb',
+              600: '#0069c7',
+              700: '#0154a3',
+              800: '#064786',
+              900: '#0b3c6f',
+              950: '#07264a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Chart.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+  <!-- SheetJS (xlsx-full.min.js) via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+  <!-- Canvas Confetti for Celebration -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* Print Styles for Indonesian Government Audit Document */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11pt;
+        line-height: 1.35;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      .page-break-before {
+        page-break-before: always;
+      }
+      .page-break-inside-avoid {
+        page-break-inside: avoid;
+      }
+      .shadow, .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl {
+        box-shadow: none !important;
+      }
+      .border {
+        border-color: #cbd5e1 !important;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 15mm 15mm 15mm 15mm;
+      }
+    }
+    @media screen {
+      .print-only {
+        display: none !important;
+      }
+    }
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
+
+  <!-- ==================== TOP EXECUTIVE HEADER ==================== -->
+  <header class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-40 no-print shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo & Branding -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-blue-700 to-indigo-500 flex items-center justify-center font-bold text-lg text-white shadow-inner border border-blue-400/30">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold tracking-tight text-lg text-white">SIMATUR-MR</span>
+              <span class="bg-blue-600/30 text-blue-300 text-xs px-2 py-0.5 rounded border border-blue-500/40 font-mono font-semibold">2026</span>
+              <span class="bg-emerald-500/20 text-emerald-300 text-xs px-2 py-0.5 rounded border border-emerald-500/30 font-medium hidden sm:inline-block">Instrumen Bobot Sept 2026</span>
+            </div>
+            <p class="text-xs text-slate-400 font-normal truncate max-w-xs sm:max-w-md md:max-w-xl">
+              Sistem Evaluasi Maturitas Manajemen Risiko Internal Pemerintah
+            </p>
+          </div>
+        </div>
+
+        <!-- Live Score Header Badge & Actions -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Live Score pill -->
+          <div class="hidden md:flex items-center bg-slate-800/90 border border-slate-700 rounded-lg px-3 py-1.5 gap-3">
+            <div>
+              <div class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Total Nilai</div>
+              <div class="font-bold text-white text-sm font-mono"><span id="headerTotalScore" class="text-blue-400 text-base">0.00</span> / 500</div>
+            </div>
+            <div class="h-6 w-px bg-slate-700"></div>
+            <div>
+              <div class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Capaian</div>
+              <div class="font-bold text-sm font-mono"><span id="headerPercentage" class="text-emerald-400 text-base">0.00</span>%</div>
+            </div>
+            <div class="h-6 w-px bg-slate-700"></div>
+            <div>
+              <div class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Level</div>
+              <span id="headerLevelBadge" class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                Level 1
+              </span>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="flex items-center gap-1.5">
+            <button id="btnSaveDraft" title="Simpan data ke memori lokal browser" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 transition flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+              </svg>
+              <span class="hidden sm:inline">Simpan</span>
+            </button>
+
+            <button id="btnLoadDemo" title="Muat contoh pengisian realistis" class="px-2.5 py-1.5 bg-indigo-900/40 hover:bg-indigo-900/70 text-indigo-200 text-xs font-medium rounded-lg border border-indigo-700/50 transition flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <span class="hidden sm:inline">Demo Data</span>
+            </button>
+
+            <button id="btnExportExcel" title="Unduh hasil evaluasi dalam format Excel (.xlsx)" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <span>Excel</span>
+            </button>
+
+            <button id="btnPrint" title="Cetak laporan resmi atau simpan ke PDF" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+              </svg>
+              <span>Cetak / PDF</span>
+            </button>
+
+            <button id="btnReset" title="Kosongkan seluruh isian formulir" class="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTAINER ==================== -->
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-lg shadow-xl border border-slate-700 flex items-center gap-3 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+      <span id="toastIcon" class="text-emerald-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </span>
+      <span id="toastMessage" class="text-sm font-medium">Data berhasil disimpan</span>
+    </div>
+
+    <!-- METADATA FORM SECTION -->
+    <section class="bg-white rounded-xl border border-slate-200 shadow-sm p-5 sm:p-6 no-print">
+      <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-slate-100 gap-3">
+        <div>
+          <h2 class="text-base sm:text-lg font-bold text-slate-800 flex items-center gap-2">
+            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            Informasi Satuan Kerja & Tim Evaluasi
+          </h2>
+          <p class="text-xs text-slate-500 mt-0.5">Lengkapi identitas unit kerja dan pengawas untuk pencetakan dokumen resmi.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">Status Penyimpanan:</span>
+          <span id="saveStatus" class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            Tersimpan di Browser
+          </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+        <!-- Tanggal Evaluasi -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Tanggal Evaluasi</label>
+          <div class="relative">
+            <input type="date" id="inputEvaluationDate" class="w-full text-xs sm:text-sm font-medium bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" />
+          </div>
+          <div id="formattedDateLabel" class="text-[11px] text-slate-500 mt-1 italic font-medium"></div>
+        </div>
+
+        <!-- Nama Satuan Kerja -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Satuan Kerja / Unit Kerja</label>
+          <input type="text" id="inputUnitName" placeholder="Contoh: Balai Besar POM / Ditjen..." class="w-full text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" value="Inspektorat Utama / Satuan Kerja Percontohan" />
+          <div class="text-[11px] text-slate-400 mt-1">Nama Satker yang dievaluasi</div>
+        </div>
+
+        <!-- Tim Penilai / Nama Auditor -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Tim Kerja / Tim Penilai / Auditor</label>
+          <input type="text" id="inputAuditorName" placeholder="Contoh: Tim Evaluasi SPIP & MR" class="w-full text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" value="Tim Evaluator Internal Pengawasan" />
+          <div class="text-[11px] text-slate-400 mt-1">Unit Pengawasan Internal / APIP</div>
+        </div>
+
+        <!-- Tahun Penilaian -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Tahun Penilaian</label>
+          <input type="number" id="inputEvaluationYear" class="w-full text-xs sm:text-sm font-bold bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" value="2026" min="2020" max="2035" />
+          <div class="text-[11px] text-slate-400 mt-1">Instrumen: Bobot Sept 2026</div>
+        </div>
+      </div>
+
+      <!-- Detail Pejabat Penandatangan (Collapsible) -->
+      <details class="mt-3 group">
+        <summary class="text-xs font-medium text-blue-600 hover:text-blue-800 cursor-pointer flex items-center gap-1 select-none">
+          <span>Pengaturan Pejabat Penandatangan Laporan (Opsional)</span>
+          <svg class="w-3.5 h-3.5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-slate-100 mt-2">
+          <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+            <div class="text-xs font-bold text-slate-700 mb-2">Pimpinan Satuan Kerja</div>
+            <div class="space-y-2">
+              <input type="text" id="inputHeadName" placeholder="Nama Pimpinan Satuan Kerja" class="w-full text-xs bg-white border border-slate-300 rounded px-2.5 py-1.5 focus:ring-1 focus:ring-blue-500" value="Dr. Hendra Gunawan, M.Si." />
+              <input type="text" id="inputHeadNIP" placeholder="NIP Pimpinan" class="w-full text-xs bg-white border border-slate-300 rounded px-2.5 py-1.5 focus:ring-1 focus:ring-blue-500 font-mono" value="19750812 200003 1 002" />
+            </div>
+          </div>
+          <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+            <div class="text-xs font-bold text-slate-700 mb-2">Ketua Tim Evaluasi / Pengawas</div>
+            <div class="space-y-2">
+              <input type="text" id="inputLeadAuditorName" placeholder="Nama Ketua Tim Penilai" class="w-full text-xs bg-white border border-slate-300 rounded px-2.5 py-1.5 focus:ring-1 focus:ring-blue-500" value="Ratna Dewi, S.E., Ak., CA, CRMO" />
+              <input type="text" id="inputLeadAuditorNIP" placeholder="NIP Ketua Tim" class="w-full text-xs bg-white border border-slate-300 rounded px-2.5 py-1.5 focus:ring-1 focus:ring-blue-500 font-mono" value="19830419 200604 2 001" />
+            </div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- NAVIGATION TABS & FILTER -->
+    <div class="no-print">
+      <div class="border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <nav class="flex space-x-2 overflow-x-auto pb-px" aria-label="Tabs">
+          <button id="tabBtnForm" class="tab-button border-b-2 border-blue-600 text-blue-600 font-semibold text-sm px-4 py-3 whitespace-nowrap flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+            <span>Formulir Penilaian (18 Parameter)</span>
+            <span id="tabBadgeCompleted" class="text-xs font-mono px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">0/18</span>
+          </button>
+
+          <button id="tabBtnSummary" class="tab-button border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm px-4 py-3 whitespace-nowrap flex items-center gap-2 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+            </svg>
+            <span>Summary & Hasil Evaluasi</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          </button>
+
+          <button id="tabBtnRubrik" class="tab-button border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm px-4 py-3 whitespace-nowrap flex items-center gap-2 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            <span>Matriks Panduan & Kriteria</span>
+          </button>
+
+          <button id="tabBtnPrintPreview" class="tab-button border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm px-4 py-3 whitespace-nowrap flex items-center gap-2 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+            <span>Pratinjau Laporan Kedinasan</span>
+          </button>
+        </nav>
+
+        <!-- Subunsur Quick Filter Selector (Only for Form view) -->
+        <div id="filterContainer" class="flex items-center gap-2 pb-2 sm:pb-0">
+          <label class="text-xs text-slate-500 font-medium whitespace-nowrap">Filter Subunsur:</label>
+          <select id="selectSubunsurFilter" class="text-xs bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 font-medium text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500">
+            <option value="all">Semua Subunsur (1 s.d. 7)</option>
+            <option value="1">Subunsur 1: Kepemimpinan yang Kondusif (12%)</option>
+            <option value="2">Subunsur 2: Pembinaan SDM (16%)</option>
+            <option value="3">Subunsur 3: Hubungan Instansi Terkait (3%)</option>
+            <option value="4">Subunsur 4: Identifikasi Risiko (22%)</option>
+            <option value="5">Subunsur 5: Analisis Risiko (29%)</option>
+            <option value="6">Subunsur 6: Informasi yang Relevan (8%)</option>
+            <option value="7">Subunsur 7: Pemantauan Berkelanjutan (10%)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 1: FORMULIR EVALUASI (18 PARAMETER) ==================== -->
+    <div id="viewForm" class="space-y-6">
+
+      <!-- Subunsurs and Parameters dynamically rendered here -->
+      <div id="subunsursListContainer" class="space-y-6"></div>
+
+      <!-- Bottom Floating Summary Bar for convenient access -->
+      <div class="sticky bottom-4 z-30 bg-slate-900/95 backdrop-blur text-white p-4 rounded-xl shadow-2xl border border-slate-700/80 flex flex-col sm:flex-row items-center justify-between gap-4 no-print">
+        <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-start">
+          <div class="flex items-center gap-3">
+            <div class="text-xs text-slate-400 font-medium">Progres Penilaian:</div>
+            <div class="w-32 bg-slate-800 rounded-full h-2.5 overflow-hidden border border-slate-700">
+              <div id="progressBarFilled" class="bg-blue-500 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <span id="progressTextFilled" class="text-xs font-mono font-bold text-slate-300">0/18 (0%)</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
+          <div class="text-right">
+            <div class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Nilai Akhir: <span id="barTotalScore" class="font-bold text-white text-sm font-mono">0.00</span> / 500</div>
+            <div class="text-xs font-bold text-emerald-400 font-mono"><span id="barPercentage">0.00</span>% · <span id="barLevelTitle" class="text-white font-sans">Level 1 - Initial</span></div>
+          </div>
+          <button id="btnJumpToSummary" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg shadow transition flex items-center gap-1.5 whitespace-nowrap">
+            <span>Lihat Summary & Grafik</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 2: SUMMARY & HASIL EVALUASI ==================== -->
+    <div id="viewSummary" class="space-y-6 hidden">
+      
+      <!-- SCORECARD HERO -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <!-- Score Card 1: Nilai Total -->
+        <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm relative overflow-hidden flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-slate-500 mb-2">
+              <span class="text-xs font-bold tracking-wider uppercase">Nilai Akumulasi Akhir</span>
+              <span class="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </span>
+            </div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-slate-800 font-mono tracking-tight" id="cardTotalScore">0.00</div>
+            <p class="text-xs text-slate-500 mt-1">Skala Maksimum: <span class="font-bold text-slate-700">500.00</span> (100% Bobot × Skor 5)</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
+            <span>Formula: Σ (Bobot × Skor)</span>
+            <span class="font-mono font-semibold text-blue-600" id="cardParamCount">18 Parameter</span>
+          </div>
+        </div>
+
+        <!-- Score Card 2: Persentase Capaian -->
+        <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm relative overflow-hidden flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-slate-500 mb-2">
+              <span class="text-xs font-bold tracking-wider uppercase">Tingkat Capaian (%)</span>
+              <span class="p-2 bg-emerald-50 text-emerald-600 rounded-lg">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </span>
+            </div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-emerald-600 font-mono tracking-tight" id="cardPercentage">0.00%</div>
+            <p class="text-xs text-slate-500 mt-1">Dihitung dari: <span class="font-bold text-slate-700">(Nilai Akhir / 500) × 100%</span></p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100">
+            <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+              <div id="cardProgressBar" class="h-2 rounded-full bg-emerald-500 transition-all duration-500" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Score Card 3: Predikat Level Maturitas -->
+        <div id="cardMaturityBox" class="bg-gradient-to-br from-rose-50 to-rose-100/70 border border-rose-200 rounded-xl p-5 shadow-sm relative flex flex-col justify-between transition-colors duration-500">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold tracking-wider uppercase text-rose-800" id="cardLevelSubtitle">Status Tingkat Kematangan</span>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded bg-white/80 shadow-xs border border-rose-200 text-rose-700 font-mono" id="cardThreshold">0% - 19.99%</span>
+            </div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-rose-900 tracking-tight" id="cardLevelTitle">Level 1 - Initial</div>
+            <p class="text-xs text-rose-800/90 mt-2 font-medium leading-relaxed" id="cardLevelDesc">
+              Penerapan manajemen risiko masih bersifat insidental, reaktif, belum terstruktur, dan belum memiliki kebijakan formal.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-rose-200/60 flex items-center justify-between text-xs font-semibold text-rose-900">
+            <span>Rekomendasi Utama:</span>
+            <span class="italic text-[11px]" id="cardActionRecommendation">Segera tetapkan kebijakan formal MR</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- GRAFIK & ANALISIS SPIDER RADAR CHART -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Radar Chart 7 Subunsur -->
+        <div class="lg:col-span-7 bg-white rounded-xl p-5 sm:p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-2">
+            <div>
+              <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                </svg>
+                Profil Radar 7 Subunsur Manajemen Risiko
+              </h3>
+              <p class="text-xs text-slate-500 mt-0.5">Visualisasi capaian tingkat kematangan per subunsur vs benchmark optimal (100%).</p>
+            </div>
+            <div class="text-xs font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-200">
+              Instrumen 2026
+            </div>
+          </div>
+
+          <div class="relative w-full h-[340px] sm:h-[380px] flex items-center justify-center p-2">
+            <canvas id="radarMaturitasChart"></canvas>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-4">
+              <span class="flex items-center gap-1.5 font-medium text-slate-700">
+                <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span> Capaian Aktual Satker
+              </span>
+              <span class="flex items-center gap-1.5 font-medium text-slate-400">
+                <span class="w-3 h-0.5 border-t-2 border-dashed border-slate-400 inline-block"></span> Target Optimal (100%)
+              </span>
+            </div>
+            <span class="text-[11px] italic">Berdasarkan skor skala 1-5 per parameter</span>
+          </div>
+        </div>
+
+        <!-- Bar Chart Komparasi Bobot vs Capaian -->
+        <div class="lg:col-span-5 bg-white rounded-xl p-5 sm:p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div class="pb-4 border-b border-slate-100">
+            <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+              <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+              Persentase Capaian per Subunsur
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5">Analisis subunsur yang paling kuat dan yang memerlukan intervensi prioritas.</p>
+          </div>
+
+          <div class="relative w-full h-[320px] flex items-center justify-center p-2">
+            <canvas id="barMaturitasChart"></canvas>
+          </div>
+
+          <div id="subunsurHighlightBox" class="mt-2 p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs space-y-1">
+            <!-- Dynamic insights rendered via JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TABEL RESMI RINGKASAN 7 SUBUNSUR (SESUAI SHEET SUMMARY) -->
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              Tabel Rekapitulasi 7 Subunsur Manajemen Risiko 2026
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5">Struktur bobot resmi akumulasi 100% dan nilai capaian aktual satuan kerja.</p>
+          </div>
+          <button id="btnExportSummaryExcel" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg border border-slate-300 transition flex items-center gap-1.5 self-start sm:self-auto">
+            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Ekspor Rekapitulasi Ini
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-50 text-slate-600 uppercase font-bold text-[11px] tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="py-3 px-4 w-12 text-center">No</th>
+                <th class="py-3 px-4">Subunsur Manajemen Risiko</th>
+                <th class="py-3 px-4 text-center w-24">Bobot (%)</th>
+                <th class="py-3 px-4 text-center w-28">Skor Maks.</th>
+                <th class="py-3 px-4 text-center w-28">Capaian Aktual</th>
+                <th class="py-3 px-4 text-center w-28">Capaian (%)</th>
+                <th class="py-3 px-4 text-center w-36">Status Tingkat</th>
+              </tr>
+            </thead>
+            <tbody id="summaryTableBody" class="divide-y divide-slate-100">
+              <!-- Rendered via JS -->
+            </tbody>
+            <tfoot class="bg-slate-900 text-white font-bold text-xs sm:text-sm">
+              <tr>
+                <td class="py-3.5 px-4 text-center"></td>
+                <td class="py-3.5 px-4 uppercase tracking-wider font-extrabold text-blue-300">TOTAL KESELURUHAN (NILAI AKHIR)</td>
+                <td class="py-3.5 px-4 text-center font-mono">100%</td>
+                <td class="py-3.5 px-4 text-center font-mono">500.00</td>
+                <td class="py-3.5 px-4 text-center font-mono text-emerald-400 text-base" id="tfootTotalScore">0.00</td>
+                <td class="py-3.5 px-4 text-center font-mono text-emerald-400 text-base" id="tfootPercentage">0.00%</td>
+                <td class="py-3.5 px-4 text-center" id="tfootLevelBadge">
+                  <span class="inline-block px-2.5 py-1 rounded bg-rose-500 text-white text-xs font-bold">Level 1 - Initial</span>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <!-- MATRIKS LEVEL KEMATANGAN RESMI & REKOMENDASI AUDIT -->
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6 space-y-4">
+        <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+          <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Standar Skala Interval Tingkat Kematangan (Maturitas) MR
+        </h3>
+        <p class="text-xs text-slate-500">Pedoman interpretasi hasil evaluasi pengawasan internal untuk perumusan tindak lanjut:</p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 pt-2">
+          <!-- Level 1 -->
+          <div class="p-3.5 rounded-lg border border-rose-200 bg-rose-50/60 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-bold text-rose-800">Level 1</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-rose-200 text-rose-800 font-semibold">&lt; 20%</span>
+              </div>
+              <div class="text-sm font-extrabold text-rose-900 mb-1">Initial</div>
+              <p class="text-[11px] text-rose-800/80 leading-relaxed">Penerapan bersifat ad-hoc, reaktif, sporadis, dan sangat tergantung individu pelaksana.</p>
+            </div>
+            <div class="mt-3 text-[10px] font-medium text-rose-700 border-t border-rose-200 pt-1.5">Skor: 0 - 99.99</div>
+          </div>
+
+          <!-- Level 2 -->
+          <div class="p-3.5 rounded-lg border border-amber-200 bg-amber-50/60 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-bold text-amber-800">Level 2</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-200 text-amber-800 font-semibold">20% - 39.99%</span>
+              </div>
+              <div class="text-sm font-extrabold text-amber-900 mb-1">Berproses</div>
+              <p class="text-[11px] text-amber-800/80 leading-relaxed">Telah dimulai inisiasi register risiko dan draf pedoman, namun penerapan belum konsisten.</p>
+            </div>
+            <div class="mt-3 text-[10px] font-medium text-amber-700 border-t border-amber-200 pt-1.5">Skor: 100 - 199.99</div>
+          </div>
+
+          <!-- Level 3 -->
+          <div class="p-3.5 rounded-lg border border-yellow-300 bg-yellow-50/70 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-bold text-yellow-800">Level 3</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-yellow-200 text-yellow-800 font-semibold">40% - 59.99%</span>
+              </div>
+              <div class="text-sm font-extrabold text-yellow-900 mb-1">Terdefinisi</div>
+              <p class="text-[11px] text-yellow-800/80 leading-relaxed">Regulasi formal, selera risiko, dan SOP lengkap. Register risiko mencakup kegiatan operasional.</p>
+            </div>
+            <div class="mt-3 text-[10px] font-medium text-yellow-700 border-t border-yellow-200 pt-1.5">Skor: 200 - 299.99</div>
+          </div>
+
+          <!-- Level 4 -->
+          <div class="p-3.5 rounded-lg border border-blue-200 bg-blue-50/60 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-bold text-blue-800">Level 4</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-200 text-blue-800 font-semibold">60% - 79.99%</span>
+              </div>
+              <div class="text-sm font-extrabold text-blue-900 mb-1">Terkelola</div>
+              <p class="text-[11px] text-blue-800/80 leading-relaxed">Telah terintegrasi dalam siklus bisnis harian, RTP efektif menurunkan residual risk secara nyata.</p>
+            </div>
+            <div class="mt-3 text-[10px] font-medium text-blue-700 border-t border-blue-200 pt-1.5">Skor: 300 - 399.99</div>
+          </div>
+
+          <!-- Level 5 -->
+          <div class="p-3.5 rounded-lg border border-emerald-200 bg-emerald-50/60 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-bold text-emerald-800">Level 5</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-200 text-emerald-800 font-semibold">80% - 100%</span>
+              </div>
+              <div class="text-sm font-extrabold text-emerald-900 mb-1">Optimal</div>
+              <p class="text-[11px] text-emerald-800/80 leading-relaxed">Continuous improvement, budaya risiko menyeluruh, digitalisasi pemantauan real-time.</p>
+            </div>
+            <div class="mt-3 text-[10px] font-medium text-emerald-700 border-t border-emerald-200 pt-1.5">Skor: 400 - 500</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==================== VIEW 3: MATRIKS PANDUAN & KRITERIA ==================== -->
+    <div id="viewRubrik" class="space-y-6 hidden">
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+        <div class="pb-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h3 class="font-bold text-slate-800 text-base">Panduan Rubrik & Kriteria Penilaian 18 Parameter</h3>
+            <p class="text-xs text-slate-500 mt-0.5">Penjelasan operasional syarat pemberian Skor 1 s.d. 5 dan daftar dokumen bukti dukung.</p>
+          </div>
+          <div class="text-xs text-slate-500 font-medium bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
+            Total 18 Parameter · Total Bobot 100%
+          </div>
+        </div>
+
+        <div id="rubrikReferenceContainer" class="space-y-6 mt-6">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 4: PRATINJAU LAPORAN KEDINASAN ==================== -->
+    <div id="viewPrintPreview" class="space-y-6 hidden">
+      <div class="no-print bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div>
+          <h4 class="font-bold text-slate-800 text-sm">Pratinjau Format Lembar Laporan Pengawasan Internal</h4>
+          <p class="text-xs text-slate-500">Tampilan ini disesuaikan persis untuk pencetakan dokumen dinas (A4) tanpa navigasi web.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btnPrintFromPreview" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg shadow transition flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            <span>Cetak Dokumen Sekarang (PDF/Printer)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Printable Document Canvas -->
+      <div class="bg-white p-8 sm:p-12 rounded-xl border border-slate-300 shadow-lg text-slate-900 max-w-4xl mx-auto printable-sheet">
+        
+        <!-- KOP LAPORAN RESMI -->
+        <div class="border-b-2 border-slate-900 pb-4 mb-6 text-center">
+          <div class="text-xs tracking-widest uppercase font-extrabold text-slate-700">APARAT PENGAWASAN INTERN PEMERINTAH (APIP)</div>
+          <div class="text-base sm:text-lg uppercase font-black text-slate-900 mt-1">LEMBAR HASIL PENILAIAN MATURITAS MANAJEMEN RISIKO TAHUN <span class="print-year">2026</span></div>
+          <div class="text-xs text-slate-600 font-medium">Berdasarkan Instrumen Evaluasi Maturitas Bobot September 2026</div>
+        </div>
+
+        <!-- IDENTITAS PENILAIAN -->
+        <table class="w-full text-xs mb-6 border-collapse">
+          <tbody>
+            <tr>
+              <td class="py-1 font-bold w-48 text-slate-700">Satuan Kerja / Unit Kerja</td>
+              <td class="py-1 w-4 text-center">:</td>
+              <td class="py-1 font-semibold text-slate-900" id="printUnitName">-</td>
+            </tr>
+            <tr>
+              <td class="py-1 font-bold text-slate-700">Tim Evaluator / Penilai</td>
+              <td class="py-1 text-center">:</td>
+              <td class="py-1 font-semibold text-slate-900" id="printAuditorName">-</td>
+            </tr>
+            <tr>
+              <td class="py-1 font-bold text-slate-700">Tanggal Pelaksanaan Evaluasi</td>
+              <td class="py-1 text-center">:</td>
+              <td class="py-1 font-semibold text-slate-900" id="printEvaluationDate">-</td>
+            </tr>
+            <tr>
+              <td class="py-1 font-bold text-slate-700">Tahun Periode Evaluasi</td>
+              <td class="py-1 text-center">:</td>
+              <td class="py-1 font-semibold text-slate-900" id="printYear">-</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- HASIL NILAI DAN TINGKAT MATURITAS (BOX BESAR) -->
+        <div class="border-2 border-slate-800 rounded-lg p-4 mb-6 bg-slate-50 flex flex-col sm:flex-row items-center justify-around gap-4 text-center">
+          <div>
+            <div class="text-[11px] uppercase tracking-wider font-bold text-slate-600">Total Nilai Capaian</div>
+            <div class="text-2xl font-black font-mono text-slate-900 mt-0.5"><span id="printTotalScore">0.00</span> / 500.00</div>
+          </div>
+          <div class="h-10 w-px bg-slate-300 hidden sm:block"></div>
+          <div>
+            <div class="text-[11px] uppercase tracking-wider font-bold text-slate-600">Persentase Capaian</div>
+            <div class="text-2xl font-black font-mono text-slate-900 mt-0.5" id="printPercentage">0.00%</div>
+          </div>
+          <div class="h-10 w-px bg-slate-300 hidden sm:block"></div>
+          <div>
+            <div class="text-[11px] uppercase tracking-wider font-bold text-slate-600">Predikat Tingkat Kematangan</div>
+            <div class="text-base font-black px-3 py-1 rounded bg-slate-900 text-white mt-1 inline-block" id="printLevelBadge">
+              Level 1 - Initial
+            </div>
+          </div>
+        </div>
+
+        <!-- TABEL REKAPITULASI 7 SUBUNSUR -->
+        <div class="mb-6">
+          <div class="text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">I. Rekapitulasi Penilaian 7 Subunsur</div>
+          <table class="w-full text-[11px] border border-slate-400 border-collapse">
+            <thead class="bg-slate-200 text-slate-800 font-bold border-b border-slate-400">
+              <tr>
+                <th class="border border-slate-400 py-1.5 px-2 text-center w-8">No</th>
+                <th class="border border-slate-400 py-1.5 px-3 text-left">Subunsur Manajemen Risiko</th>
+                <th class="border border-slate-400 py-1.5 px-2 text-center w-16">Bobot</th>
+                <th class="border border-slate-400 py-1.5 px-2 text-center w-16">Maks.</th>
+                <th class="border border-slate-400 py-1.5 px-2 text-center w-16">Capaian</th>
+                <th class="border border-slate-400 py-1.5 px-2 text-center w-16">%</th>
+                <th class="border border-slate-400 py-1.5 px-2 text-center w-24">Status</th>
+              </tr>
+            </thead>
+            <tbody id="printSummaryTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+            <tfoot class="bg-slate-100 font-bold border-t border-slate-400">
+              <tr>
+                <td class="border border-slate-400 py-1.5 px-2 text-center" colspan="2">TOTAL CAPAIAN AKHIR</td>
+                <td class="border border-slate-400 py-1.5 px-2 text-center">100%</td>
+                <td class="border border-slate-400 py-1.5 px-2 text-center">500.00</td>
+                <td class="border border-slate-400 py-1.5 px-2 text-center font-bold" id="printTableTotalScore">0.00</td>
+                <td class="border border-slate-400 py-1.5 px-2 text-center font-bold" id="printTablePercentage">0.00%</td>
+                <td class="border border-slate-400 py-1.5 px-2 text-center font-bold" id="printTableLevelStatus">-</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <!-- RINCIAN 18 PARAMETER -->
+        <div class="mb-8 page-break-before">
+          <div class="text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">II. Rincian Pengujian 18 Parameter Evaluasi</div>
+          <table class="w-full text-[10px] border border-slate-400 border-collapse">
+            <thead class="bg-slate-200 text-slate-800 font-bold border-b border-slate-400">
+              <tr>
+                <th class="border border-slate-400 py-1 px-1.5 text-center w-8">Kode</th>
+                <th class="border border-slate-400 py-1 px-2 text-left">Parameter Evaluasi</th>
+                <th class="border border-slate-400 py-1 px-1.5 text-center w-10">Bobot</th>
+                <th class="border border-slate-400 py-1 px-1.5 text-center w-10">Skor (1-5)</th>
+                <th class="border border-slate-400 py-1 px-1.5 text-center w-12">Nilai Akhir</th>
+                <th class="border border-slate-400 py-1 px-2 text-left">Catatan Evaluator & Fakta Uji</th>
+              </tr>
+            </thead>
+            <tbody id="printDetailTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- KOLOM TANDA TANGAN KEDINASAN -->
+        <div class="mt-8 page-break-inside-avoid">
+          <div class="text-right text-xs mb-4 text-slate-800">
+            Ditetapkan pada tanggal: <span id="printSignDate" class="font-semibold">-</span>
+          </div>
+          <div class="grid grid-cols-2 gap-8 text-xs text-center">
+            <div>
+              <p class="font-medium text-slate-700">Mengetahui,</p>
+              <p class="font-bold text-slate-900">Pimpinan Satuan Kerja</p>
+              <div class="h-20 flex items-end justify-center">
+                <span class="text-slate-400 text-[10px] italic">[Tanda Tangan & Cap Dinas]</span>
+              </div>
+              <p class="font-bold text-slate-900 underline mt-1" id="printSignHeadName">-</p>
+              <p class="text-[11px] text-slate-600">NIP. <span id="printSignHeadNIP">-</span></p>
+            </div>
+            <div>
+              <p class="font-medium text-slate-700">Disusun & Dievaluasi oleh,</p>
+              <p class="font-bold text-slate-900">Ketua Tim Evaluasi / Pengawas</p>
+              <div class="h-20 flex items-end justify-center">
+                <span class="text-slate-400 text-[10px] italic">[Tanda Tangan]</span>
+              </div>
+              <p class="font-bold text-slate-900 underline mt-1" id="printSignAuditorName">-</p>
+              <p class="text-[11px] text-slate-600">NIP. <span id="printSignAuditorNIP">-</span></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-slate-900 border-t border-slate-800 py-6 mt-12 text-slate-400 text-xs text-center no-print">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="font-semibold text-slate-300">SIMATUR-MR 2026</span>
+        <span>·</span>
+        <span>Instrumen Bobot Sept 2026</span>
+        <span>·</span>
+        <span class="text-slate-500">Maturitas Manajemen Risiko Sektor Publik</span>
+      </div>
+      <div class="text-slate-500">
+        Standalone SPA (HTML5, Tailwind, Chart.js, SheetJS)
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL DETAIL PARAMETER & DOKUMEN ==================== -->
+  <div id="modalDetail" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 flex flex-col animate-in fade-in zoom-in-95 duration-150">
+      
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-slate-100 flex items-start justify-between bg-slate-50/80 sticky top-0 z-10 backdrop-blur">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span id="modalParamCode" class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">1.1</span>
+            <span id="modalParamWeight" class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-200 text-slate-700">Bobot: 4</span>
+            <span id="modalSubunsurTitle" class="text-xs text-slate-500 font-medium">Subunsur 1</span>
+          </div>
+          <h3 id="modalParamTitle" class="font-bold text-slate-800 text-base leading-snug">Judul Parameter</h3>
+        </div>
+        <button id="modalBtnClose" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg hover:bg-slate-200 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-5 space-y-5 text-xs sm:text-sm">
+        
+        <!-- Kriteria & Penjelasan -->
+        <div class="bg-blue-50/70 border border-blue-200 rounded-xl p-4">
+          <h4 class="font-bold text-blue-900 text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Kriteria & Penjelasan Evaluasi
+          </h4>
+          <p id="modalParamCriteria" class="text-blue-950 leading-relaxed text-xs">Kriteria penjelasan lengkap...</p>
+        </div>
+
+        <!-- Checklist Dokumen Bukti Dukung -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Daftar Dokumen Bukti Dukung (Checklist)
+            </h4>
+            <span id="modalDocCount" class="text-[11px] font-mono font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+              0 / 0 Lengkap
+            </span>
+          </div>
+          <div id="modalDocChecklistContainer" class="space-y-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <!-- Checklist items inserted via JS -->
+          </div>
+        </div>
+
+        <!-- Rubrik Skor 1 - 5 -->
+        <div>
+          <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2" />
+            </svg>
+            Rubrik Penilaian (Skor 1 s.d. 5)
+          </h4>
+          <div id="modalRubricList" class="space-y-2.5">
+            <!-- Rubric levels inserted via JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-slate-100 bg-slate-50 flex items-center justify-between sticky bottom-0">
+        <div class="text-xs text-slate-500">
+          Pilih skor langsung pada kartu evaluasi utama.
+        </div>
+        <button id="modalBtnDone" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg transition">
+          Tutup & Kembali
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== MODAL RESET CONFIRMATION ==================== -->
+  <div id="modalResetConfirm" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-xl max-w-sm w-full p-5 shadow-2xl border border-slate-200 space-y-4">
+      <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mx-auto">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+      <div class="text-center">
+        <h4 class="font-bold text-slate-800 text-base">Reset Formulir Evaluasi?</h4>
+        <p class="text-xs text-slate-500 mt-1">Seluruh skor dan catatan evaluator yang tersimpan akan dikosongkan kembali ke awal.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-3 pt-2">
+        <button id="btnCancelReset" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition">
+          Batal
+        </button>
+        <button id="btnConfirmReset" class="px-3 py-2 bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold rounded-lg transition">
+          Ya, Reset Semua
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN SCRIPT & LOGIC ==================== -->
+  <script>
+    /**
+     * SISTEM EVALUASI TINGKAT KEMATANGAN (MATURITAS) MANAJEMEN RISIKO 2026
+     * Sesuai Lembar Bobot Sept 2026 & Summary
+     * Total Bobot: 100% | 7 Subunsur | 18 Parameter | Skala Skor 1-5 | Maksimal 500 Nilai
+     */
+
+    // 1. INSTRUMEN DATA STRUCTURE: 7 SUBUNSUR & 18 PARAMETERS
+    const SUBUNSURS_DATA = [
+      {
+        id: 1,
+        title: "Kepemimpinan yang Kondusif",
+        bobot: 12,
+        desc: "Komitmen dan keteladanan pimpinan dalam pengalokasian sumber daya, pengambilan keputusan berbasis risiko, serta penetapan indikator kinerja risiko.",
+        parameters: [
+          {
+            id: "1.1",
+            title: "Pimpinan Satuan Kerja mengalokasikan sumber daya untuk penerapan manajemen risiko.",
+            bobot: 4,
+            kriteria: "Pimpinan menyediakan dukungan anggaran terencana dalam DIPA/RKA, menetapkan struktur tim Unit Pemilik Risiko (UPR), alokasi SDM pengelola, sarana prasarana, serta sistem informasi pendukung manajemen risiko.",
+            dokumen: [
+              "DIPA / RKA-K/L yang memuat anggaran kegiatan Manajemen Risiko",
+              "SK Pembentukan Unit Pemilik Risiko (UPR) / Tim Pengelola MR",
+              "Dokumen alokasi sarana/prasarana operasional pengawasan MR",
+              "Notula rapat pimpinan terkait alokasi sumber daya MR"
+            ],
+            rubrik: {
+              1: "Belum ada alokasi sumber daya (anggaran, personel, sarana) khusus untuk MR.",
+              2: "Alokasi sumber daya bersifat insidental tanpa SK atau perencanaan anggaran tertulis.",
+              3: "Tersedia SK UPR dan alokasi anggaran formal dalam DIPA/RKA namun terbatas.",
+              4: "Sumber daya memadai, tim UPR aktif berkala, dan anggaran terserap sesuai kebutuhan program.",
+              5: "Alokasi sumber daya komprehensif, dievaluasi efektivitasnya secara berkala, dan didukung sistem informasi terintegrasi."
+            }
+          },
+          {
+            id: "1.2",
+            title: "Pimpinan Satuan Kerja menggunakan informasi terkait risiko dalam pengambilan keputusan.",
+            bobot: 4,
+            kriteria: "Pimpinan secara konsisten mempertimbangkan profil risiko, risk register, dan selera risiko dalam penetapan kebijakan strategis, penyusunan program kerja prioritas, serta penanganan isu mendesak.",
+            dokumen: [
+              "Notula rapat pimpinan/manajemen yang mencantumkan telaahan risiko",
+              "Lembar pertimbangan risiko dalam telaahan staf / usulan kebijakan",
+              "Keputusan Pimpinan yang memuat mitigasi risiko operasional/strategis",
+              "Laporan berkala pemantauan risiko kepada Pimpinan Satuan Kerja"
+            ],
+            rubrik: {
+              1: "Keputusan diambil tanpa mempertimbangkan analisis risiko sama sekali.",
+              2: "Pertimbangan risiko baru dilakukan setelah timbul masalah/kejadian negatif.",
+              3: "Dokumen profil risiko dijadikan referensi formal dalam penyusunan Renja tahunan.",
+              4: "Seluruh keputusan strategis dan operasional utama didasarkan pada telaahan profil risiko tertulis.",
+              5: "Budaya sadar risiko melekat penuh pada pimpinan; setiap opsi keputusan disertai risk-benefit analysis yang komprehensif."
+            }
+          },
+          {
+            id: "1.3",
+            title: "Pimpinan Satuan Kerja mendorong penerapan manajemen risiko melalui indikator penilaian kinerja pegawai.",
+            bobot: 4,
+            kriteria: "Penerapan manajemen risiko telah dimasukkan ke dalam Indikator Kinerja Utama (IKU), Sasaran Kinerja Pegawai (SKP), atau Perjanjian Kinerja (PK) pejabat struktural dan pelaksana.",
+            dokumen: [
+              "Perjanjian Kinerja (PK) Pimpinan dan Pejabat Administrator/Pengawas",
+              "Sasaran Kinerja Pegawai (SKP) yang memuat target mitigasi risiko",
+              "Pedoman/SK Sistem Penilaian Kinerja berbasis Risiko",
+              "Laporan capaian IKU/SKP terkait kepatuhan dan mitigasi risiko"
+            ],
+            rubrik: {
+              1: "Belum ada indikator MR dalam penilaian kinerja pegawai maupun pejabat.",
+              2: "MR hanya dibebankan sebagai tugas tambahan ad-hoc tanpa target kuantitatif/kualitatif pada SKP.",
+              3: "Penerapan MR telah dicantumkan dalam Perjanjian Kinerja pimpinan unit kerja.",
+              4: "MR telah diturunkan (cascading) ke dalam SKP pejabat struktural dan pengelola risiko.",
+              5: "Indikator MR terinternalisasi ke seluruh pegawai dan mempengaruhi reward/punishment kinerja secara formal."
+            }
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: "Penyusunan dan Penerapan Kebijakan yang Sehat tentang Pembinaan SDM",
+        bobot: 16,
+        desc: "Pemberian fasilitas pelatihan, peningkatan kompetensi teknis, serta penanaman budaya sadar risiko di seluruh jajaran pegawai.",
+        parameters: [
+          {
+            id: "2.1",
+            title: "Pegawai telah mendapatkan fasilitas untuk meningkatkan kompetensi dan keterampilan terkait MR.",
+            bobot: 8,
+            kriteria: "Penyelenggaraan pelatihan, bimbingan teknis (bimtek), sertifikasi profesi (CRMO/QRMO), workshop, atau seminar MR yang terencana dalam Training Needs Analysis.",
+            dokumen: [
+              "Rencana Pengembangan Kompetensi SDM (Training Needs Analysis)",
+              "Surat Tugas & Sertifikat Pelatihan/Bimtek Manajemen Risiko",
+              "Daftar hadir dan materi workshop / in-house training MR",
+              "Rekapitulasi persentase pegawai yang telah mengikuti pelatihan MR"
+            ],
+            rubrik: {
+              1: "Tidak ada kegiatan pelatihan atau peningkatan kompetensi MR bagi pegawai.",
+              2: "Pelatihan hanya diikuti 1-2 orang secara insidental tanpa tindak lanjut penularan ilmu.",
+              3: "Terdapat program bimtek MR bagi tim pengelola UPR minimal 1 kali per tahun.",
+              4: "Pelatihan MR terstruktur untuk pejabat struktural dan tim UPR dengan evaluasi pemahaman pasca pelatihan.",
+              5: "Program pengembangan kompetensi MR berkelanjutan untuk seluruh level pegawai, didukung sertifikasi kompetensi profesi MR."
+            }
+          },
+          {
+            id: "2.2",
+            title: "Pegawai memiliki kesadaran dan pemahaman terkait manajemen risiko.",
+            bobot: 8,
+            kriteria: "Internalisasi kesadaran budaya risiko (risk culture) di kalangan staf, pemahaman risiko di proses kerja masing-masing, serta partisipasi aktif dalam pelaporan potensi insiden.",
+            dokumen: [
+              "Hasil survei budaya sadar risiko / kuesioner pemahaman pegawai",
+              "Bukti keterlibatan pegawai dalam proses identifikasi risiko unit",
+              "Media internal sosialisasi risiko (infografis, newsletter, banner/desktop)",
+              "Laporan risk event / near miss yang diinisiasi pegawai lini depan"
+            ],
+            rubrik: {
+              1: "Pegawai tidak memahami konsep dasar MR dan menganggap MR semata beban administratif.",
+              2: "Sebagian kecil pegawai mengetahui istilah MR namun tidak mengetahui risiko spesifik di fungsinya.",
+              3: "Pegawai pada level teknis memahami risiko utama pekerjaannya dan mengisi formulir identifikasi.",
+              4: "Mayoritas pegawai aktif mengidentifikasi potensi risiko dan memahami SOP pengendalian.",
+              5: "Budaya risiko tinggi; pegawai proaktif melaporkan deviasi/near-miss dan mempraktikkan mitigasi harian."
+            }
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: "Hubungan Kerja yang Baik dengan Instansi Pemerintah Terkait",
+        bobot: 3,
+        desc: "Koordinasi lintas instansi, pengelolaan risiko kemitraan, dan mitigasi risiko ketergantungan pada pihak ketiga/eksternal.",
+        parameters: [
+          {
+            id: "3.1",
+            title: "Pengidentifikasian, penilaian, dan pengelolaan risiko terkait kemitraan / instansi terkait.",
+            bobot: 3,
+            kriteria: "Satker mengidentifikasi risiko lintas sektor, ketergantungan pihak ketiga/vendor/mitra strategis, klausul manajemen risiko dalam kontrak/MoU, serta koordinasi penanganan risiko bersama.",
+            dokumen: [
+              "Identifikasi risiko ketergantungan pihak ketiga/eksternal dalam Risk Register",
+              "Perjanjian Kerjasama (PKS/MoU) dengan klausul mitigasi risiko bersama",
+              "Notula koordinasi antar-instansi terkait pengendalian risiko bersama",
+              "Evaluasi kinerja mitra dan mitigasi risiko keterlambatan/kegagalan vendor"
+            ],
+            rubrik: {
+              1: "Risiko kerja sama eksternal tidak pernah diidentifikasi.",
+              2: "Risiko eksternal diidentifikasi sebatas saat terjadi perselisihan atau keterlambatan kontrak.",
+              3: "Risiko kemitraan diidentifikasi dalam register risiko umum namun belum ada SOP mitigasi spesifik.",
+              4: "Terdapat klausul mitigasi risiko dalam setiap MoU/kontrak dan dilakukan reviu kepatuhan mitra berkala.",
+              5: "Manajemen risiko kemitraan terintegrasi dengan forum komunikasi lintas satker dan evaluasi dampak sistemik."
+            }
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: "Identifikasi Risiko",
+        bobot: 22,
+        desc: "Ketersediaan kebijakan formal MR, kelengkapan Register Risiko di seluruh sasaran, dan pelekatan MR pada alur proses bisnis organisasi.",
+        parameters: [
+          {
+            id: "4.1",
+            title: "K/L/D telah memiliki Kebijakan Manajemen Risiko formal.",
+            bobot: 10,
+            kriteria: "Adanya regulasi formal (Peraturan/Keputusan Kepala Satker) tentang Pedoman Manajemen Risiko, struktur tata kelola, dan penetapan Selera Risiko (Risk Appetite).",
+            dokumen: [
+              "Peraturan/Keputusan penetapan Kebijakan Manajemen Risiko Satker",
+              "Dokumen Pedoman Petunjuk Teknis Manajemen Risiko",
+              "Ketetapan Selera Risiko (Risk Appetite) dan Batas Toleransi Risiko",
+              "Piagam Manajemen Risiko (Risk Management Charter)"
+            ],
+            rubrik: {
+              1: "Belum ada regulasi atau kebijakan formal MR sama sekali.",
+              2: "Kebijakan MR masih dalam bentuk draft rancangan yang belum ditetapkan resmi.",
+              3: "Kebijakan MR formal telah ditetapkan namun belum memuat penetapan selera risiko secara spesifik.",
+              4: "Kebijakan MR lengkap (pedoman, struktur tata kelola, selera risiko) dan disosialisasikan secara resmi.",
+              5: "Kebijakan MR mutakhir, diselaraskan dengan standar nasional/internasional, dan direviu berkala tiap tahun."
+            }
+          },
+          {
+            id: "4.2",
+            title: "Risiko telah teridentifikasi dan dituangkan dalam Register Risiko.",
+            bobot: 7,
+            kriteria: "Adanya Register Risiko yang mencakup seluruh sasaran strategis & operasional dengan memuat formulasi 3 elemen risiko: Akar Penyebab (Causa), Kejadian (Event), dan Dampak (Impact).",
+            dokumen: [
+              "Dokumen Register Risiko (Risk Register) Unit Kerja Tahun Berjalan",
+              "Formulir Identifikasi Risiko (Penyebab, Kejadian, Dampak)",
+              "Berita Acara Workshop / Konsinyering Identifikasi Risiko",
+              "Penyelarasan Register Risiko dengan Sasaran Strategis Renstra"
+            ],
+            rubrik: {
+              1: "Belum ada Register Risiko sama sekali.",
+              2: "Register Risiko hanya mencakup sebagian kecil kegiatan rutin tanpa keterkaitan sasaran strategis.",
+              3: "Register Risiko telah disusun mencakup sasaran kegiatan namun belum seluruh proses bisnis.",
+              4: "Register Risiko lengkap mencakup seluruh sasaran strategis & operasional dengan formulasi 3 elemen lengkap.",
+              5: "Register Risiko mutakhir, dinamis diperbarui saat ada perubahan lingkungan strategis, dan tervalidasi oleh APIP."
+            }
+          },
+          {
+            id: "4.3",
+            title: "Proses manajemen risiko telah melekat pada proses bisnis Satuan Kerja.",
+            bobot: 5,
+            kriteria: "MR menyatu dalam Standar Operasional Prosedur (SOP), peta proses bisnis, siklus perencanaan (Renja & DIPA), dan pelaksanaan tugas operasional harian.",
+            dokumen: [
+              "SOP Operasional yang memuat titik-titik kendali risiko (risk control points)",
+              "Peta Proses Bisnis yang terintegrasi dengan peta risiko",
+              "Dokumen integrasi MR dalam siklus perencanaan (Renja & DIPA)",
+              "Checklist kepatuhan pengendalian dalam eksekusi kegiatan utama"
+            ],
+            rubrik: {
+              1: "MR berjalan terpisah total dari kegiatan operasional harian (hanya dokumen formalitas).",
+              2: "Beberapa SOP memuat unsur kontrol tetapi belum dikaitkan secara eksplisit dengan register risiko.",
+              3: "Peta proses bisnis telah mengidentifikasi risiko pada proses bisnis tingkat eselon II / pimpinan.",
+              4: "Seluruh SOP kegiatan inti memiliki titik kendali risiko dan dipatuhi oleh pelaksana proses.",
+              5: "MR terintegrasi penuh dalam siklus PDCA proses bisnis dan alur kerja digital."
+            }
+          }
+        ]
+      },
+      {
+        id: 5,
+        title: "Analisis Risiko",
+        bobot: 29,
+        desc: "Penilaian tingkat kemungkinan dan dampak, penentuan peta prioritas risiko (heat map), perumusan Rencana Tindak Pengendalian (RTP), dan efektivitas penurunan risiko residual.",
+        parameters: [
+          {
+            id: "5.1",
+            title: "Seluruh risiko telah dianalisis dampak dan tingkat keterjadiannya (probabilitas).",
+            bobot: 4,
+            kriteria: "Pengukuran tingkat kemungkinan (probabilitas) dan tingkat dampak (konsekuensi) menggunakan skala matriks kriteria standar (misal 5x5) didukung bukti historis data faktual.",
+            dokumen: [
+              "Matriks Analisis Risiko (Kriteria Kemungkinan & Kriteria Dampak)",
+              "Lembar Penilaian Risiko (Risk Scoring Sheet)",
+              "Data historis kejadian masa lalu yang menjadi dasar analisis",
+              "Berita acara / dokumentasi konsinyering penetapan level risiko"
+            ],
+            rubrik: {
+              1: "Risiko hanya dicatat tanpa analisis level dampak dan kemungkinan.",
+              2: "Analisis risiko dilakukan subjektif tanpa kriteria skala dampak dan probabilitas yang terstandar.",
+              3: "Analisis risiko menggunakan matriks standar (misal 5x5) untuk sebagian besar risiko teridentifikasi.",
+              4: "Seluruh risiko dalam register dianalisis probabilitas dan dampaknya berbasis data dukung faktual.",
+              5: "Analisis risiko komprehensif membedakan risiko inheren dan residual, didukung data analitik akurat."
+            }
+          },
+          {
+            id: "5.2",
+            title: "Satuan Kerja telah menentukan prioritas risiko.",
+            bobot: 4,
+            kriteria: "Penetapan besaran nilai risiko, pemetaan ke dalam Heat Map / Peta Risiko, dan penetapan daftar prioritas risiko utama (Top Risks) yang memerlukan tindakan mitigasi segera.",
+            dokumen: [
+              "Heat Map / Peta Risiko (Risk Matrix Visual)",
+              "Daftar Urutan Prioritas Risiko (Top Risks) Satker",
+              "Penetapan batas toleransi risiko untuk eskalasi penanganan",
+              "Persetujuan Pimpinan atas daftar prioritas risiko utama"
+            ],
+            rubrik: {
+              1: "Belum ada penetapan prioritas atau pemetaan risiko (semua risiko dianggap sama).",
+              2: "Ada pengelompokan tinggi/sedang/rendah namun belum dituangkan dalam matriks visual atau heat map.",
+              3: "Heat map telah dibuat dan menetapkan urutan risiko berdasarkan besaran nilai risiko.",
+              4: "Prioritas risiko ditetapkan jelas, divalidasi pimpinan, dan menjadi fokus penanganan utama.",
+              5: "Penentuan prioritas risiko adaptif terhadap dinamika capaian kinerja dan diperbarui secara berkala."
+            }
+          },
+          {
+            id: "5.3",
+            title: "Satuan Kerja telah menentukan Rencana Tindak Pengendalian (RTP).",
+            bobot: 5,
+            kriteria: "Dokumen RTP / Risk Treatment Plan yang memuat uraian opsi mitigasi, penanggung jawab (action owner), target jadwal penyelesaian (milestone), dan kebutuhan sumber daya/anggaran.",
+            dokumen: [
+              "Dokumen Formulir Rencana Tindak Pengendalian (RTP)",
+              "Jadwal pelaksanaan (milestone / timeline) mitigasi risiko",
+              "Penetapan penanggung jawab mitigasi (Risk Action Owner)",
+              "Rincian estimasi biaya/kebutuhan sumber daya mitigasi"
+            ],
+            rubrik: {
+              1: "Belum ada rencana tindak pengendalian untuk risiko-risiko yang teridentifikasi.",
+              2: "Rencana tindak pengendalian bersifat umum tanpa target waktu dan penanggung jawab yang definitif.",
+              3: "RTP disusun untuk risiko prioritas (tinggi/sangat tinggi) dengan PIC dan batas waktu.",
+              4: "Seluruh risiko di atas selera risiko memiliki RTP rinci, terukur, dan disetujui pimpinan satker.",
+              5: "RTP komprehensif, mencakup rencana kontinjensi (contingency plan), dan dialokasikan sumber dayanya secara penuh."
+            }
+          },
+          {
+            id: "5.4",
+            title: "Tindak pengendalian telah diimplementasikan secara konkret.",
+            bobot: 8,
+            kriteria: "Pelaksanaan nyata di lapangan atas aktivitas mitigasi yang tertuang dalam RTP, didukung bukti fisik implementasi dan pemantauan realisasi jadwal.",
+            dokumen: [
+              "Laporan Pelaksanaan Rencana Tindak Pengendalian (Progress Report)",
+              "Bukti fisik implementasi (notula, foto kegiatan, output sistem)",
+              "Catatan monitoring realisasi jadwal pengendalian",
+              "Berita acara penyelesaian mitigasi risiko"
+            ],
+            rubrik: {
+              1: "Rencana tindak pengendalian belum pernah diimplementasikan.",
+              2: "Implementasi mitigasi < 25% dari total rencana tindak pengendalian yang telah ditetapkan.",
+              3: "Implementasi mitigasi mencapai 25% - 59% sesuai jadwal yang ditentukan.",
+              4: "Implementasi mitigasi mencapai 60% - 84% dengan bukti fisik yang lengkap dan dapat diverifikasi.",
+              5: "Implementasi mitigasi mencapai ≥ 85% - 100% tepat waktu, dengan dokumentasi fisik yang sangat memadai."
+            }
+          },
+          {
+            id: "5.5",
+            title: "Tindak pengendalian efektif menurunkan tingkat risiko.",
+            bobot: 8,
+            kriteria: "Evaluasi efektivitas pengendalian; penurunan level risiko residual dibandingkan risiko awal (inheren), terkendalinya kerugian/insiden, dan pencapaian sasaran kinerja unit.",
+            dokumen: [
+              "Laporan Reviu Efektivitas Pengendalian Risiko",
+              "Perbandingan level risiko inheren vs residual risk",
+              "Data tren penurunan frekuensi insiden/temuan deviasi",
+              "Laporan evaluasi pengendalian oleh Tim Kepatuhan / UPR"
+            ],
+            rubrik: {
+              1: "Tidak pernah dilakukan evaluasi efektivitas pengendalian atau risiko justru meningkat/berulang.",
+              2: "Pengendalian diimplementasikan namun belum berdampak nyata menurunkan level risiko.",
+              3: "Tindak pengendalian terbukti menurunkan beberapa risiko operasional kecil.",
+              4: "Mayoritas risiko prioritas berhasil diturunkan level risikonya hingga berada di bawah selera risiko.",
+              5: "Seluruh pengendalian terbukti sangat efektif, zero target failure, dan menghasilkan continuous improvement."
+            }
+          }
+        ]
+      },
+      {
+        id: 6,
+        title: "Informasi yang Relevan",
+        bobot: 8,
+        desc: "Ketersediaan saluran pelaporan pelanggaran (Whistleblowing System) yang aman dan diseminasi informasi kebijakan MR secara terbuka.",
+        parameters: [
+          {
+            id: "6.1",
+            title: "Pimpinan K/L/D membangun sistem pengaduan (Whistleblowing System / WBS).",
+            bobot: 4,
+            kriteria: "Tersedianya saluran pengaduan pelanggaran/fraud yang independen, menjamin kerahasiaan identitas pelapor, dan memiliki prosedur tindak lanjut yang transparan.",
+            dokumen: [
+              "SK/Pedoman Pengelolaan Pengaduan Masyarakat dan WBS",
+              "Media akses kanal WBS (portal daring, hotline, email resmi)",
+              "Laporan rekapitulasi pengaduan yang masuk dan status tindak lanjutnya",
+              "Bukti jaminan perlindungan kerahasiaan identitas pelapor"
+            ],
+            rubrik: {
+              1: "Belum ada saluran sistem pengaduan / WBS.",
+              2: "Saluran pengaduan konvensional tersedia tetapi belum ada regulasi SOP penanganan dan perlindungan pelapor.",
+              3: "Sistem pengaduan/WBS telah ditetapkan dengan SK dan saluran informasi yang dapat diakses publik/pegawai.",
+              4: "Saluran WBS aktif, disosialisasikan, setiap aduan diverifikasi dan ditindaklanjuti sesuai jangka waktu SOP.",
+              5: "Sistem WBS modern terintegrasi, transparan dalam progres penanganan, dan diaudit independen secara berkala."
+            }
+          },
+          {
+            id: "6.2",
+            title: "Kebijakan manajemen risiko satuan kerja telah dikomunikasikan secara luas.",
+            bobot: 4,
+            kriteria: "Diseminasi dan komunikasi kebijakan, register risiko, dan selera risiko kepada seluruh pegawai dan pemangku kepentingan eksternal melalui berbagai media komunikasi.",
+            dokumen: [
+              "Dokumentasi sosialisasi kebijakan MR (foto, daftar hadir, paparan)",
+              "Publikasi dokumen MR di intranet, website resmi, atau mading",
+              "Media sosialisasi kreatif (video edukasi, leaflet, briefing rutin)",
+              "Laporan komunikasi risiko berkala kepada para stakeholder"
+            ],
+            rubrik: {
+              1: "Kebijakan MR tidak pernah dikomunikasikan/disosialisasikan.",
+              2: "Kebijakan MR hanya diketahui oleh pimpinan dan penyusun dokumen, tanpa sosialisasi terbuka.",
+              3: "Sosialisasi dilakukan minimal satu kali per tahun dalam forum rapat dinas.",
+              4: "Kebijakan MR dikomunikasikan secara berkala melalui media cetak/digital dan dipahami stakeholder utama.",
+              5: "Strategi komunikasi risiko komprehensif, multi-channel, disertai survei efektivitas pemahaman."
+            }
+          }
+        ]
+      },
+      {
+        id: 7,
+        title: "Pemantauan Berkelanjutan",
+        bobot: 10,
+        desc: "Monitoring berkala terhadap perubahan profil risiko dan pelaksanaan audit / reviu independen oleh APIP/Inspektorat.",
+        parameters: [
+          {
+            id: "7.1",
+            title: "Pemantauan / monitoring berkala terhadap risiko telah dilakukan.",
+            bobot: 5,
+            kriteria: "Monitoring berkala (bulanan/triwulanan/semesteran) oleh UPR terhadap status risiko, dinamika lingkungan, dan deviasi progres implementasi RTP.",
+            dokumen: [
+              "Laporan Pemantauan Berkala Manajemen Risiko (Triwulanan / Semesteran)",
+              "Risalah rapat berkala UPR tentang pemantauan risiko",
+              "Catatan pemutakhiran (updating) Register Risiko dan Peta Risiko",
+              "Rekomendasi perbaikan hasil pemantauan berkala"
+            ],
+            rubrik: {
+              1: "Tidak pernah dilakukan monitoring berkala atas risiko.",
+              2: "Monitoring hanya dilakukan satu kali di akhir tahun saat penyusunan laporan pertanggungjawaban.",
+              3: "Pemantauan berkala dilakukan minimal per semester dan menghasilkan laporan pemantauan.",
+              4: "Pemantauan risiko berjalan disiplin setiap triwulan oleh UPR dan dilaporkan ke pimpinan satker.",
+              5: "Pemantauan risiko kontinu (real-time/monthly), didukung dashboard pemantauan, dan respon cepat atas perubahan risiko."
+            }
+          },
+          {
+            id: "7.2",
+            title: "Terdapat audit, evaluasi, atau reviu independen terhadap proses manajemen risiko.",
+            bobot: 5,
+            kriteria: "Evaluasi, audit, atau reviu independen oleh Aparat Pengawasan Intern Pemerintah (APIP) / Inspektorat terhadap maturitas dan efektivitas penyelenggaraan MR.",
+            dokumen: [
+              "Surat Tugas Pengawasan / Audit / Reviu MR oleh APIP/Inspektorat",
+              "Laporan Hasil Evaluasi / Reviu Manajemen Risiko oleh APIP (LHE MR)",
+              "Matriks Tindak Lanjut Rekomendasi Hasil Evaluasi APIP",
+              "Berita Acara Exit Meeting evaluasi maturitas manajemen risiko"
+            ],
+            rubrik: {
+              1: "Belum pernah dilakukan audit atau evaluasi independen atas MR.",
+              2: "Reviu pernah dilakukan sebatas konsultasi informal tanpa laporan tertulis resmi dari APIP.",
+              3: "Terdapat Laporan Hasil Evaluasi (LHE) dari APIP namun tindak lanjut rekomendasinya belum berjalan.",
+              4: "Reviu independen oleh APIP dilakukan berkala minimal 1 tahun sekali dan rekomendasi telah ditindaklanjuti.",
+              5: "Hasil evaluasi APIP menunjukkan tren peningkatan tingkat kematangan dan seluruh rekomendasi diselesaikan tuntas."
+            }
+          }
+        ]
+      }
+    ];
+
+    // Total parameter count helper
+    const ALL_PARAMETERS = [];
+    SUBUNSURS_DATA.forEach(sub => {
+      sub.parameters.forEach(param => {
+        ALL_PARAMETERS.push({ ...param, subunsurId: sub.id, subunsurTitle: sub.title });
+      });
+    });
+
+    // 2. STATE MANAGEMENT
+    const STORAGE_KEY = 'SIMATUR_MR_DATA_2026';
+    let appState = {
+      meta: {
+        evaluationDate: '',
+        unitName: 'Inspektorat Utama / Satuan Kerja Percontohan',
+        auditorName: 'Tim Evaluator Internal Pengawasan',
+        evaluationYear: '2026',
+        headName: 'Dr. Hendra Gunawan, M.Si.',
+        headNIP: '19750812 200003 1 002',
+        leadAuditorName: 'Ratna Dewi, S.E., Ak., CA, CRMO',
+        leadAuditorNIP: '19830419 200604 2 001'
+      },
+      scores: {}, // e.g. { "1.1": 4, "1.2": 3 }
+      notes: {},  // e.g. { "1.1": "Catatan..." }
+      docsChecked: {} // e.g. { "1.1": [0, 2] } array of checked index
+    };
+
+    // Chart instances
+    let radarChartInstance = null;
+    let barChartInstance = null;
+
+    // 3. DATE UTILITIES
+    function getTodayDateString() {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function formatIndonesianDate(dateStr) {
+      if (!dateStr) return '';
+      const date = new Date(dateStr + 'T00:00:00');
+      const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+      const months = [
+        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+      ];
+      const dayName = days[date.getDay()];
+      const dayNum = date.getDate();
+      const monthName = months[date.getMonth()];
+      const year = date.getFullYear();
+      return `${dayName}, ${dayNum} ${monthName} ${year}`;
+    }
+
+    // 4. LEVEL MATURITAS CLASSIFIER
+    function getMaturityLevel(percentage) {
+      const p = parseFloat(percentage) || 0;
+      if (p < 20) {
+        return {
+          level: 1,
+          name: "Level 1 - Initial",
+          shortName: "Level 1",
+          badgeClass: "bg-rose-500 text-white",
+          lightBadgeClass: "bg-rose-100 text-rose-800 border-rose-300",
+          colorHex: "#f43f5e",
+          bgGradient: "from-rose-50 to-rose-100/70 border-rose-200 text-rose-900",
+          range: "0% s.d. 19.99%",
+          desc: "Penerapan manajemen risiko masih bersifat insidental, reaktif, sporadis, dan sangat tergantung pada inisiatif personal tanpa dukungan regulasi formal.",
+          recommendation: "Prioritas: Segera susun Kebijakan MR formal dan tetapkan Tim Unit Pemilik Risiko (UPR)."
+        };
+      } else if (p < 40) {
+        return {
+          level: 2,
+          name: "Level 2 - Berproses",
+          shortName: "Level 2",
+          badgeClass: "bg-amber-500 text-white",
+          lightBadgeClass: "bg-amber-100 text-amber-800 border-amber-300",
+          colorHex: "#f59e0b",
+          bgGradient: "from-amber-50 to-amber-100/70 border-amber-200 text-amber-900",
+          range: "20% s.d. 39.99%",
+          desc: "Telah ada inisiasi penerapan manajemen risiko dan register risiko awal, namun implementasi tindak mitigasi belum konsisten dan belum menyeluruh.",
+          recommendation: "Prioritas: Perluas identifikasi risiko ke seluruh sasaran dan laksanakan Rencana Tindak Pengendalian secara konsisten."
+        };
+      } else if (p < 60) {
+        return {
+          level: 3,
+          name: "Level 3 - Terdefinisi",
+          shortName: "Level 3",
+          badgeClass: "bg-yellow-500 text-slate-900",
+          lightBadgeClass: "bg-yellow-100 text-yellow-800 border-yellow-300",
+          colorHex: "#eab308",
+          bgGradient: "from-yellow-50 to-yellow-100/70 border-yellow-200 text-yellow-900",
+          range: "40% s.d. 59.99%",
+          desc: "Kebijakan dan petunjuk teknis MR telah ditetapkan formal, seluruh sasaran memiliki register risiko, dan proses telah terdokumentasi rapi.",
+          recommendation: "Prioritas: Tingkatkan pelekatan titik kendali risiko pada proses bisnis harian dan disiplin monitoring triwulanan."
+        };
+      } else if (p < 80) {
+        return {
+          level: 4,
+          name: "Level 4 - Terkelola",
+          shortName: "Level 4",
+          badgeClass: "bg-blue-600 text-white",
+          lightBadgeClass: "bg-blue-100 text-blue-800 border-blue-300",
+          colorHex: "#2563eb",
+          bgGradient: "from-blue-50 to-blue-100/70 border-blue-200 text-blue-900",
+          range: "60% s.d. 79.99%",
+          desc: "Manajemen risiko telah terintegrasi kuat dalam siklus kerja dan perencanaan. Tindak mitigasi terbukti nyata menurunkan residual risk.",
+          recommendation: "Prioritas: Pertahankan konsistensi pengendalian, digitalisasi sistem informasi MR, dan optimalkan evaluasi independen APIP."
+        };
+      } else {
+        return {
+          level: 5,
+          name: "Level 5 - Optimal",
+          shortName: "Level 5",
+          badgeClass: "bg-emerald-600 text-white",
+          lightBadgeClass: "bg-emerald-100 text-emerald-800 border-emerald-300",
+          colorHex: "#10b981",
+          bgGradient: "from-emerald-50 to-emerald-100/70 border-emerald-200 text-emerald-900",
+          range: "80% s.d. 100%",
+          desc: "Budaya sadar risiko telah terinternalisasi penuh pada seluruh individu. Continuous improvement berjalan otomatis dan menjadi benchmark percontohan.",
+          recommendation: "Prioritas: Benchmark nasional, inovasi prediktif berbasis analitik data, dan pembinaan unit satker lain."
+        };
+      }
+    }
+
+    // 5. TOAST NOTIFICATION
+    let toastTimeout = null;
+    function showToast(message, isSuccess = true) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+
+      toastMsg.textContent = message;
+      if (isSuccess) {
+        toastIcon.className = 'text-emerald-400';
+        toastIcon.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>`;
+      } else {
+        toastIcon.className = 'text-rose-400';
+        toastIcon.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>`;
+      }
+
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 2500);
+    }
+
+    // 6. LOCAL STORAGE PERSISTENCE
+    function saveToLocalStorage() {
+      // Collect current metadata
+      appState.meta.evaluationDate = document.getElementById('inputEvaluationDate').value;
+      appState.meta.unitName = document.getElementById('inputUnitName').value;
+      appState.meta.auditorName = document.getElementById('inputAuditorName').value;
+      appState.meta.evaluationYear = document.getElementById('inputEvaluationYear').value;
+      appState.meta.headName = document.getElementById('inputHeadName').value;
+      appState.meta.headNIP = document.getElementById('inputHeadNIP').value;
+      appState.meta.leadAuditorName = document.getElementById('inputLeadAuditorName').value;
+      appState.meta.leadAuditorNIP = document.getElementById('inputLeadAuditorNIP').value;
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      
+      const saveStatus = document.getElementById('saveStatus');
+      if (saveStatus) {
+        saveStatus.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Tersimpan di Browser`;
+      }
+    }
+
+    function loadFromLocalStorage() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed && typeof parsed === 'object') {
+            appState = {
+              meta: { ...appState.meta, ...(parsed.meta || {}) },
+              scores: parsed.scores || {},
+              notes: parsed.notes || {},
+              docsChecked: parsed.docsChecked || {}
+            };
+          }
+        } catch (e) {
+          console.error("Gagal membaca localStorage:", e);
+        }
+      }
+
+      // If evaluation date is empty, default to today
+      if (!appState.meta.evaluationDate) {
+        appState.meta.evaluationDate = getTodayDateString();
+      }
+
+      // Populate input fields
+      document.getElementById('inputEvaluationDate').value = appState.meta.evaluationDate;
+      document.getElementById('inputUnitName').value = appState.meta.unitName || '';
+      document.getElementById('inputAuditorName').value = appState.meta.auditorName || '';
+      document.getElementById('inputEvaluationYear').value = appState.meta.evaluationYear || '2026';
+      document.getElementById('inputHeadName').value = appState.meta.headName || '';
+      document.getElementById('inputHeadNIP').value = appState.meta.headNIP || '';
+      document.getElementById('inputLeadAuditorName').value = appState.meta.leadAuditorName || '';
+      document.getElementById('inputLeadAuditorNIP').value = appState.meta.leadAuditorNIP || '';
+
+      updateDateLabel();
+    }
+
+    function updateDateLabel() {
+      const val = document.getElementById('inputEvaluationDate').value;
+      const formatted = formatIndonesianDate(val);
+      document.getElementById('formattedDateLabel').textContent = formatted ? `Format: ${formatted}` : '';
+    }
+
+    // 7. CALCULATION ENGINE
+    function calculateMaturity() {
+      let totalScore = 0;
+      let filledCount = 0;
+
+      const subunsurResults = SUBUNSURS_DATA.map(sub => {
+        let subActualScore = 0;
+        const subMaxScore = sub.bobot * 5; // e.g. bobot 12 * 5 = 60
+
+        sub.parameters.forEach(param => {
+          const score = parseInt(appState.scores[param.id], 10) || 0;
+          if (score > 0) filledCount++;
+          const paramTotal = param.bobot * score;
+          subActualScore += paramTotal;
+        });
+
+        totalScore += subActualScore;
+        const subPercentage = subMaxScore > 0 ? (subActualScore / subMaxScore) * 100 : 0;
+        const subLevel = getMaturityLevel(subPercentage);
+
+        return {
+          id: sub.id,
+          title: sub.title,
+          bobot: sub.bobot,
+          maxScore: subMaxScore,
+          actualScore: subActualScore,
+          percentage: subPercentage,
+          level: subLevel
+        };
+      });
+
+      // Total max is always 500 (100 * 5)
+      const overallPercentage = (totalScore / 500) * 100;
+      const overallLevel = getMaturityLevel(overallPercentage);
+
+      return {
+        totalScore,
+        overallPercentage,
+        overallLevel,
+        filledCount,
+        totalParams: ALL_PARAMETERS.length,
+        subunsurResults
+      };
+    }
+
+    // 8. UPDATE UI FROM CALCULATIONS
+    function refreshCalculationsAndUI() {
+      const calc = calculateMaturity();
+
+      // Top Header badges
+      document.getElementById('headerTotalScore').textContent = calc.totalScore.toFixed(2);
+      document.getElementById('headerPercentage').textContent = calc.overallPercentage.toFixed(2);
+      const headerLevel = document.getElementById('headerLevelBadge');
+      headerLevel.textContent = calc.overallLevel.shortName;
+      headerLevel.className = `inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold ${calc.overallLevel.lightBadgeClass}`;
+
+      // Floating bottom bar
+      document.getElementById('barTotalScore').textContent = calc.totalScore.toFixed(2);
+      document.getElementById('barPercentage').textContent = calc.overallPercentage.toFixed(2);
+      document.getElementById('barLevelTitle').textContent = calc.overallLevel.name;
+      
+      const pctFilled = Math.round((calc.filledCount / calc.totalParams) * 100);
+      document.getElementById('progressBarFilled').style.width = `${pctFilled}%`;
+      document.getElementById('progressTextFilled').textContent = `${calc.filledCount}/${calc.totalParams} (${pctFilled}%)`;
+      document.getElementById('tabBadgeCompleted').textContent = `${calc.filledCount}/${calc.totalParams}`;
+
+      // Scorecard in Summary
+      document.getElementById('cardTotalScore').textContent = calc.totalScore.toFixed(2);
+      document.getElementById('cardPercentage').textContent = `${calc.overallPercentage.toFixed(2)}%`;
+      document.getElementById('cardProgressBar').style.width = `${Math.min(calc.overallPercentage, 100)}%`;
+      document.getElementById('cardParamCount').textContent = `${calc.filledCount} dari 18 Terisi`;
+
+      // Level Card Box
+      const levelBox = document.getElementById('cardMaturityBox');
+      levelBox.className = `bg-gradient-to-br ${calc.overallLevel.bgGradient} rounded-xl p-5 shadow-sm relative flex flex-col justify-between transition-colors duration-500`;
+      document.getElementById('cardLevelTitle').textContent = calc.overallLevel.name;
+      document.getElementById('cardThreshold').textContent = calc.overallLevel.range;
+      document.getElementById('cardLevelDesc').textContent = calc.overallLevel.desc;
+      document.getElementById('cardActionRecommendation').textContent = calc.overallLevel.recommendation;
+
+      // Update Subunsur Summary Table
+      renderSummaryTable(calc);
+
+      // Update Print Preview
+      updatePrintPreviewContent(calc);
+
+      // Update Charts if on Summary Tab
+      updateCharts(calc);
+    }
+
+    // 9. RENDER FORMULIR EVALUASI (18 PARAMETERS)
+    function renderEvaluationForm() {
+      const container = document.getElementById('subunsursListContainer');
+      container.innerHTML = '';
+
+      const filterVal = document.getElementById('selectSubunsurFilter').value;
+
+      SUBUNSURS_DATA.forEach(sub => {
+        // Filter subunsur
+        if (filterVal !== 'all' && filterVal !== String(sub.id)) {
+          return;
+        }
+
+        const subCard = document.createElement('div');
+        subCard.className = 'bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden subunsur-group';
+        subCard.id = `subunsur-section-${sub.id}`;
+
+        // Calculate current subunsur stats
+        let subScore = 0;
+        sub.parameters.forEach(p => {
+          const s = parseInt(appState.scores[p.id], 10) || 0;
+          subScore += p.bobot * s;
+        });
+        const subMax = sub.bobot * 5;
+        const subPct = subMax > 0 ? (subScore / subMax) * 100 : 0;
+        const subLvl = getMaturityLevel(subPct);
+
+        // Subunsur Header Accordion / Banner
+        const headerHTML = `
+          <div class="p-4 sm:p-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="px-2 py-0.5 rounded bg-blue-500 text-white text-xs font-mono font-bold tracking-wide">SUBUNSUR ${sub.id}</span>
+                <span class="text-xs text-slate-300 font-semibold">Bobot: ${sub.bobot}% (Skor Maks: ${subMax})</span>
+              </div>
+              <h3 class="font-bold text-base sm:text-lg text-white">${sub.title}</h3>
+              <p class="text-xs text-slate-400 mt-0.5">${sub.desc}</p>
+            </div>
+            
+            <div class="flex items-center gap-4 bg-slate-800/80 px-3.5 py-2 rounded-lg border border-slate-700 self-start md:self-auto">
+              <div class="text-right">
+                <div class="text-[10px] text-slate-400 uppercase font-semibold">Capaian Subunsur</div>
+                <div class="font-mono font-bold text-sm text-white">
+                  <span id="subScoreDisplay-${sub.id}" class="text-emerald-400 font-semibold">${subScore.toFixed(1)}</span> / ${subMax}
+                </div>
+              </div>
+              <div class="h-6 w-px bg-slate-700"></div>
+              <div>
+                <span id="subLevelBadge-${sub.id}" class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold ${subLvl.badgeClass}">
+                  ${subPct.toFixed(1)}% · ${subLvl.shortName}
+                </span>
+              </div>
+            </div>
+          </div>
+        `;
+
+        // Parameters Container
+        const paramsContainer = document.createElement('div');
+        paramsContainer.className = 'divide-y divide-slate-100';
+
+        sub.parameters.forEach((param, pIdx) => {
+          const currentScore = parseInt(appState.scores[param.id], 10) || 0;
+          const currentNote = appState.notes[param.id] || '';
+          const checkedCount = (appState.docsChecked[param.id] || []).length;
+          const totalDocs = param.dokumen.length;
+          const lineTotal = param.bobot * currentScore;
+
+          const paramRow = document.createElement('div');
+          paramRow.className = 'p-4 sm:p-5 hover:bg-slate-50/70 transition-colors';
+          paramRow.id = `param-row-${param.id}`;
+
+          paramRow.innerHTML = `
+            <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-4">
+              
+              <!-- Left: Parameter Code, Title, Criteria Summary, Docs -->
+              <div class="space-y-2 lg:max-w-2xl flex-grow">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="font-mono font-bold text-xs bg-slate-100 text-slate-800 px-2 py-0.5 rounded border border-slate-200">
+                    Param ${param.id}
+                  </span>
+                  <span class="text-xs font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                    Bobot: ${param.bobot}% (Maks: ${param.bobot * 5})
+                  </span>
+                  <button type="button" onclick="openDetailModal('${param.id}')" class="text-xs text-blue-600 hover:text-blue-800 font-medium inline-flex items-center gap-1 hover:underline">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Kriteria & Rubrik Lengkap</span>
+                  </button>
+                  <button type="button" onclick="openDetailModal('${param.id}')" class="text-xs text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2 py-0.5 rounded border border-emerald-200 font-medium inline-flex items-center gap-1 transition">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span id="badgeDocParam-${param.id}">Bukti Dukung (${checkedCount}/${totalDocs})</span>
+                  </button>
+                </div>
+
+                <h4 class="font-bold text-slate-900 text-sm leading-snug">
+                  ${param.title}
+                </h4>
+
+                <p class="text-xs text-slate-600 leading-relaxed line-clamp-2" title="${param.kriteria}">
+                  ${param.kriteria}
+                </p>
+
+                <!-- Catatan Evaluator / Bukti Fisik Textarea -->
+                <div class="pt-1">
+                  <div class="flex items-center justify-between mb-1">
+                    <label class="text-[11px] font-semibold text-slate-600 flex items-center gap-1">
+                      <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                      </svg>
+                      Catatan Evaluator / Catatan Bukti Fisik / Rekomendasi:
+                    </label>
+                    <div class="flex items-center gap-1 text-[10px] text-blue-600">
+                      <button type="button" onclick="insertQuickNote('${param.id}', 'Telah diverifikasi lengkap sesuai dokumen bukti fisik yang sah.')" class="hover:underline">+ Lengkap</button>
+                      <span>·</span>
+                      <button type="button" onclick="insertQuickNote('${param.id}', 'Dokumen masih berupa draf, perlu penetapan regulasi resmi pimpinan.')" class="hover:underline">+ Draf</button>
+                      <span>·</span>
+                      <button type="button" onclick="insertQuickNote('${param.id}', 'Belum ada dokumen bukti dukung yang memadai.')" class="hover:underline">+ Belum Ada</button>
+                    </div>
+                  </div>
+                  <textarea id="note-${param.id}" rows="2" placeholder="Tuliskan catatan hasil pengujian, nomor dokumen bukti fisik, atau rekomendasi perbaikan..." class="w-full text-xs bg-slate-50 border border-slate-200 rounded-lg p-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500 transition">${currentNote}</textarea>
+                </div>
+              </div>
+
+              <!-- Right: Score Buttons (1 - 5) & Line Total Result -->
+              <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 flex flex-col justify-between items-center sm:items-end w-full lg:w-72 shrink-0 space-y-3">
+                <div class="w-full flex items-center justify-between text-xs">
+                  <span class="font-bold text-slate-700">Skor Evaluasi (1 - 5):</span>
+                  <span id="scoreLabel-${param.id}" class="text-[11px] font-semibold text-slate-500">
+                    ${currentScore > 0 ? `Skor ${currentScore}` : 'Belum dinilai'}
+                  </span>
+                </div>
+
+                <!-- 5 Interactive Score Buttons -->
+                <div class="grid grid-cols-5 gap-1.5 w-full">
+                  ${[1, 2, 3, 4, 5].map(val => `
+                    <button type="button" 
+                      id="btnScore-${param.id}-${val}"
+                      onclick="setParamScore('${param.id}', ${val})" 
+                      title="Skor ${val}: ${param.rubrik[val]}"
+                      class="score-btn h-9 rounded-lg font-bold text-xs flex flex-col items-center justify-center transition border ${
+                        currentScore === val 
+                          ? getActiveScoreButtonClass(val)
+                          : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-100 hover:border-slate-400'
+                      }">
+                      <span>${val}</span>
+                    </button>
+                  `).join('')}
+                </div>
+
+                <!-- Line Total Calculation -->
+                <div class="w-full pt-2 border-t border-slate-200/80 flex items-center justify-between">
+                  <div class="text-[11px] text-slate-500">
+                    Bobot (${param.bobot}) × Skor (<span id="scoreFactor-${param.id}">${currentScore}</span>) =
+                  </div>
+                  <div class="text-right">
+                    <span id="lineTotal-${param.id}" class="font-mono font-extrabold text-sm ${currentScore > 0 ? 'text-blue-600' : 'text-slate-400'}">
+                      ${lineTotal.toFixed(1)}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Rubric Snippet for Selected Score -->
+                <div id="rubricPreview-${param.id}" class="text-[10px] text-slate-500 bg-white p-2 rounded border border-slate-200 w-full italic leading-tight">
+                  ${currentScore > 0 ? param.rubrik[currentScore] : 'Pilih skor 1 s.d. 5 berdasarkan rubrik pengujian.'}
+                </div>
+
+              </div>
+
+            </div>
+          `;
+
+          paramsContainer.appendChild(paramRow);
+        });
+
+        subCard.innerHTML = headerHTML;
+        subCard.appendChild(paramsContainer);
+        container.appendChild(subCard);
+      });
+
+      // Attach textarea listeners
+      ALL_PARAMETERS.forEach(param => {
+        const textarea = document.getElementById(`note-${param.id}`);
+        if (textarea) {
+          textarea.addEventListener('input', (e) => {
+            appState.notes[param.id] = e.target.value;
+            saveToLocalStorage();
+          });
+        }
+      });
+    }
+
+    function getActiveScoreButtonClass(score) {
+      switch (score) {
+        case 1:
+          return 'bg-rose-600 text-white border-rose-700 shadow-sm';
+        case 2:
+          return 'bg-amber-600 text-white border-amber-700 shadow-sm';
+        case 3:
+          return 'bg-yellow-500 text-slate-900 border-yellow-600 shadow-sm';
+        case 4:
+          return 'bg-blue-600 text-white border-blue-700 shadow-sm';
+        case 5:
+          return 'bg-emerald-600 text-white border-emerald-700 shadow-sm';
+        default:
+          return 'bg-slate-800 text-white border-slate-900';
+      }
+    }
+
+    // 10. SCORE SELECTION HANDLER
+    window.setParamScore = function(paramId, score) {
+      appState.scores[paramId] = score;
+
+      const param = ALL_PARAMETERS.find(p => p.id === paramId);
+      if (!param) return;
+
+      // Update button visual styles
+      for (let s = 1; s <= 5; s++) {
+        const btn = document.getElementById(`btnScore-${paramId}-${s}`);
+        if (btn) {
+          if (s === score) {
+            btn.className = `score-btn h-9 rounded-lg font-bold text-xs flex flex-col items-center justify-center transition border ${getActiveScoreButtonClass(s)}`;
+          } else {
+            btn.className = 'score-btn h-9 rounded-lg font-bold text-xs flex flex-col items-center justify-center transition border bg-white text-slate-700 border-slate-300 hover:bg-slate-100 hover:border-slate-400';
+          }
+        }
+      }
+
+      // Update line score text
+      const scoreLabel = document.getElementById(`scoreLabel-${paramId}`);
+      if (scoreLabel) scoreLabel.textContent = `Skor ${score}`;
+
+      const scoreFactor = document.getElementById(`scoreFactor-${paramId}`);
+      if (scoreFactor) scoreFactor.textContent = score;
+
+      const lineTotalEl = document.getElementById(`lineTotal-${paramId}`);
+      if (lineTotalEl) {
+        const lineTotal = param.bobot * score;
+        lineTotalEl.textContent = lineTotal.toFixed(1);
+        lineTotalEl.className = 'font-mono font-extrabold text-sm text-blue-600';
+      }
+
+      // Update rubric preview box
+      const rubricPreview = document.getElementById(`rubricPreview-${paramId}`);
+      if (rubricPreview) {
+        rubricPreview.textContent = param.rubrik[score];
+      }
+
+      // Update subunsur header stats
+      updateSubunsurHeader(param.subunsurId);
+
+      // Save to localStorage & refresh global stats
+      saveToLocalStorage();
+      refreshCalculationsAndUI();
+
+      // Confetti celebration if 100% or optimal level achieved
+      const calc = calculateMaturity();
+      if (calc.overallLevel.level === 5 && calc.filledCount === calc.totalParams && typeof confetti === 'function') {
+        confetti({
+          particleCount: 70,
+          spread: 60,
+          origin: { y: 0.8 }
+        });
+      }
+    };
+
+    function updateSubunsurHeader(subId) {
+      const sub = SUBUNSURS_DATA.find(s => s.id === subId);
+      if (!sub) return;
+
+      let subScore = 0;
+      sub.parameters.forEach(p => {
+        const s = parseInt(appState.scores[p.id], 10) || 0;
+        subScore += p.bobot * s;
+      });
+      const subMax = sub.bobot * 5;
+      const subPct = subMax > 0 ? (subScore / subMax) * 100 : 0;
+      const subLvl = getMaturityLevel(subPct);
+
+      const scoreDisp = document.getElementById(`subScoreDisplay-${sub.id}`);
+      if (scoreDisp) scoreDisp.textContent = subScore.toFixed(1);
+
+      const badgeDisp = document.getElementById(`subLevelBadge-${sub.id}`);
+      if (badgeDisp) {
+        badgeDisp.className = `inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold ${subLvl.badgeClass}`;
+        badgeDisp.textContent = `${subPct.toFixed(1)}% · ${subLvl.shortName}`;
+      }
+    }
+
+    window.insertQuickNote = function(paramId, text) {
+      const textarea = document.getElementById(`note-${paramId}`);
+      if (textarea) {
+        const current = textarea.value.trim();
+        textarea.value = current ? `${current}\n${text}` : text;
+        appState.notes[paramId] = textarea.value;
+        saveToLocalStorage();
+        showToast('Catatan berhasil diperbarui');
+      }
+    };
+
+    // 11. DETAIL & RUBRIC MODAL
+    let currentModalParamId = null;
+
+    window.openDetailModal = function(paramId) {
+      const param = ALL_PARAMETERS.find(p => p.id === paramId);
+      if (!param) return;
+      currentModalParamId = paramId;
+
+      document.getElementById('modalParamCode').textContent = param.id;
+      document.getElementById('modalParamWeight').textContent = `Bobot: ${param.bobot}% (Maks: ${param.bobot * 5})`;
+      document.getElementById('modalSubunsurTitle').textContent = `Subunsur ${param.subunsurId}: ${param.subunsurTitle}`;
+      document.getElementById('modalParamTitle').textContent = param.title;
+      document.getElementById('modalParamCriteria').textContent = param.kriteria;
+
+      // Render Checklist Dokumen
+      const docContainer = document.getElementById('modalDocChecklistContainer');
+      docContainer.innerHTML = '';
+      const checkedArr = appState.docsChecked[param.id] || [];
+
+      param.dokumen.forEach((docItem, idx) => {
+        const isChecked = checkedArr.includes(idx);
+        const itemEl = document.createElement('label');
+        itemEl.className = 'flex items-start gap-2.5 p-2 rounded-lg bg-white border border-slate-200 hover:border-blue-300 cursor-pointer select-none transition';
+        itemEl.innerHTML = `
+          <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleDocCheckbox('${param.id}', ${idx})" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500 w-4 h-4" />
+          <span class="text-xs text-slate-700 leading-snug">${docItem}</span>
+        `;
+        docContainer.appendChild(itemEl);
+      });
+
+      updateModalDocCounter(param);
+
+      // Render Rubrik 1 - 5
+      const rubricContainer = document.getElementById('modalRubricList');
+      rubricContainer.innerHTML = '';
+      const selectedScore = parseInt(appState.scores[param.id], 10) || 0;
+
+      for (let s = 1; s <= 5; s++) {
+        const isSelected = selectedScore === s;
+        const rubRow = document.createElement('div');
+        rubRow.className = `p-3 rounded-lg border flex items-start gap-3 transition ${
+          isSelected ? 'bg-blue-50 border-blue-400 shadow-sm' : 'bg-slate-50/80 border-slate-200'
+        }`;
+
+        rubRow.innerHTML = `
+          <div class="shrink-0">
+            <span class="w-6 h-6 rounded-full font-mono font-bold text-xs flex items-center justify-center ${
+              isSelected ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-700'
+            }">
+              ${s}
+            </span>
+          </div>
+          <div class="flex-grow">
+            <div class="flex items-center justify-between mb-0.5">
+              <span class="font-bold text-xs ${isSelected ? 'text-blue-900' : 'text-slate-800'}">Skor ${s}</span>
+              <button type="button" onclick="setParamScoreFromModal('${param.id}', ${s})" class="text-[11px] font-semibold px-2 py-0.5 rounded ${
+                isSelected ? 'bg-blue-600 text-white' : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-100'
+              }">
+                ${isSelected ? '✓ Terpilih' : 'Pilih Skor Ini'}
+              </button>
+            </div>
+            <p class="text-xs ${isSelected ? 'text-blue-950 font-medium' : 'text-slate-600'} leading-relaxed">
+              ${param.rubrik[s]}
+            </p>
+          </div>
+        `;
+        rubricContainer.appendChild(rubRow);
+      }
+
+      document.getElementById('modalDetail').classList.remove('hidden');
+    };
+
+    window.toggleDocCheckbox = function(paramId, idx) {
+      if (!appState.docsChecked[paramId]) {
+        appState.docsChecked[paramId] = [];
+      }
+      const arr = appState.docsChecked[paramId];
+      const pos = arr.indexOf(idx);
+      if (pos > -1) {
+        arr.splice(pos, 1);
+      } else {
+        arr.push(idx);
+      }
+      saveToLocalStorage();
+
+      const param = ALL_PARAMETERS.find(p => p.id === paramId);
+      if (param) {
+        updateModalDocCounter(param);
+        const badge = document.getElementById(`badgeDocParam-${param.id}`);
+        if (badge) {
+          badge.textContent = `Bukti Dukung (${arr.length}/${param.dokumen.length})`;
+        }
+      }
+    };
+
+    function updateModalDocCounter(param) {
+      const checkedArr = appState.docsChecked[param.id] || [];
+      const counterEl = document.getElementById('modalDocCount');
+      if (counterEl) {
+        counterEl.textContent = `${checkedArr.length} / ${param.dokumen.length} Lengkap`;
+      }
+    }
+
+    window.setParamScoreFromModal = function(paramId, score) {
+      window.setParamScore(paramId, score);
+      // re-open modal to refresh selection state
+      window.openDetailModal(paramId);
+    };
+
+    document.getElementById('modalBtnClose').addEventListener('click', () => {
+      document.getElementById('modalDetail').classList.add('hidden');
+    });
+    document.getElementById('modalBtnDone').addEventListener('click', () => {
+      document.getElementById('modalDetail').classList.add('hidden');
+    });
+
+    // 12. SUMMARY TABLE RENDERING
+    function renderSummaryTable(calc) {
+      const tbody = document.getElementById('summaryTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      calc.subunsurResults.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition-colors';
+
+        tr.innerHTML = `
+          <td class="py-3 px-4 text-center font-mono font-bold text-slate-700">${item.id}</td>
+          <td class="py-3 px-4 font-semibold text-slate-800">
+            <div>${item.title}</div>
+            <div class="text-[11px] text-slate-400 font-normal">Bobot Subunsur: ${item.bobot}%</div>
+          </td>
+          <td class="py-3 px-4 text-center font-mono text-slate-600">${item.bobot}%</td>
+          <td class="py-3 px-4 text-center font-mono text-slate-600">${item.maxScore.toFixed(2)}</td>
+          <td class="py-3 px-4 text-center font-mono font-bold text-blue-600">${item.actualScore.toFixed(2)}</td>
+          <td class="py-3 px-4 text-center font-mono font-bold text-slate-800">${item.percentage.toFixed(2)}%</td>
+          <td class="py-3 px-4 text-center">
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold ${item.level.lightBadgeClass}">
+              ${item.level.shortName}
+            </span>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('tfootTotalScore').textContent = calc.totalScore.toFixed(2);
+      document.getElementById('tfootPercentage').textContent = `${calc.overallPercentage.toFixed(2)}%`;
+      document.getElementById('tfootLevelBadge').innerHTML = `
+        <span class="inline-block px-2.5 py-1 rounded text-xs font-bold ${calc.overallLevel.badgeClass}">
+          ${calc.overallLevel.name}
+        </span>
+      `;
+
+      // Subunsur Highlights Insights
+      const highlightBox = document.getElementById('subunsurHighlightBox');
+      if (highlightBox) {
+        // Sort subunsurs by percentage
+        const sorted = [...calc.subunsurResults].sort((a, b) => b.percentage - a.percentage);
+        const topSub = sorted[0];
+        const lowSub = sorted[sorted.length - 1];
+
+        highlightBox.innerHTML = `
+          <div class="flex items-center justify-between text-slate-700">
+            <span class="font-bold flex items-center gap-1 text-emerald-700">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+              Subunsur Terkuat:
+            </span>
+            <span class="font-semibold text-slate-900">${topSub.title} (${topSub.percentage.toFixed(1)}%)</span>
+          </div>
+          <div class="flex items-center justify-between text-slate-700 pt-1 border-t border-slate-200">
+            <span class="font-bold flex items-center gap-1 text-rose-700">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              Prioritas Peningkatan:
+            </span>
+            <span class="font-semibold text-slate-900">${lowSub.title} (${lowSub.percentage.toFixed(1)}%)</span>
+          </div>
+        `;
+      }
+    }
+
+    // 13. CHARTS INITIALIZATION & UPDATE
+    function updateCharts(calc) {
+      // Check if radar canvas exists
+      const radarCanvas = document.getElementById('radarMaturitasChart');
+      if (!radarCanvas) return;
+
+      const labels = calc.subunsurResults.map(s => `Subunsur ${s.id}`);
+      const actualPct = calc.subunsurResults.map(s => s.percentage);
+      const targetPct = calc.subunsurResults.map(() => 100);
+
+      // 1. Radar Chart
+      if (radarChartInstance) {
+        radarChartInstance.data.labels = labels;
+        radarChartInstance.data.datasets[0].data = actualPct;
+        radarChartInstance.update();
+      } else {
+        const ctx = radarCanvas.getContext('2d');
+        radarChartInstance = new Chart(ctx, {
+          type: 'radar',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: 'Capaian Aktual (%)',
+                data: actualPct,
+                backgroundColor: 'rgba(37, 99, 235, 0.25)',
+                borderColor: '#2563eb',
+                borderWidth: 2.5,
+                pointBackgroundColor: '#1d4ed8',
+                pointBorderColor: '#ffffff',
+                pointHoverRadius: 6,
+                pointRadius: 4.5
+              },
+              {
+                label: 'Benchmark Target Optimal (100%)',
+                data: targetPct,
+                borderColor: 'rgba(148, 163, 184, 0.6)',
+                borderWidth: 1.5,
+                borderDash: [4, 4],
+                fill: false,
+                pointRadius: 0
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              r: {
+                min: 0,
+                max: 100,
+                ticks: {
+                  stepSize: 20,
+                  backdropColor: 'transparent',
+                  font: { size: 10, family: 'Inter' }
+                },
+                grid: {
+                  color: 'rgba(203, 213, 225, 0.6)'
+                },
+                angleLines: {
+                  color: 'rgba(203, 213, 225, 0.8)'
+                },
+                pointLabels: {
+                  font: {
+                    size: 11,
+                    weight: 'bold',
+                    family: 'Inter'
+                  },
+                  color: '#1e293b'
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    const idx = context.dataIndex;
+                    const sub = calc.subunsurResults[idx];
+                    return `Capaian: ${context.parsed.r.toFixed(1)}% (${sub.title})`;
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      // 2. Bar Chart
+      const barCanvas = document.getElementById('barMaturitasChart');
+      if (!barCanvas) return;
+
+      if (barChartInstance) {
+        barChartInstance.data.labels = calc.subunsurResults.map(s => `Sub ${s.id}`);
+        barChartInstance.data.datasets[0].data = actualPct;
+        barChartInstance.update();
+      } else {
+        const barCtx = barCanvas.getContext('2d');
+        barChartInstance = new Chart(barCtx, {
+          type: 'bar',
+          data: {
+            labels: calc.subunsurResults.map(s => `Sub ${s.id}`),
+            datasets: [
+              {
+                label: 'Persentase Capaian (%)',
+                data: actualPct,
+                backgroundColor: [
+                  '#3b82f6', '#6366f1', '#8b5cf6', '#ec4899', '#f43f5e', '#f59e0b', '#10b981'
+                ],
+                borderRadius: 6,
+                maxBarThickness: 32
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                min: 0,
+                max: 100,
+                ticks: {
+                  stepSize: 20,
+                  callback: function(v) { return v + '%'; },
+                  font: { size: 10 }
+                },
+                grid: {
+                  color: '#f1f5f9'
+                }
+              },
+              x: {
+                grid: { display: false },
+                ticks: { font: { size: 10, weight: 'bold' } }
+              }
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  title: function(items) {
+                    const idx = items[0].dataIndex;
+                    return `Subunsur ${calc.subunsurResults[idx].id}: ${calc.subunsurResults[idx].title}`;
+                  },
+                  label: function(ctx) {
+                    return `Capaian: ${ctx.parsed.y.toFixed(2)}%`;
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+    }
+
+    // 14. MATRIKS PANDUAN & RUBRIK VIEW RENDERING
+    function renderRubrikReferenceView() {
+      const container = document.getElementById('rubrikReferenceContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      SUBUNSURS_DATA.forEach(sub => {
+        const subSection = document.createElement('div');
+        subSection.className = 'border border-slate-200 rounded-xl overflow-hidden';
+
+        const subHeader = `
+          <div class="bg-slate-800 text-white p-3.5 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono font-bold bg-blue-500 px-2 py-0.5 rounded text-white mr-2">SUBUNSUR ${sub.id}</span>
+              <span class="font-bold text-sm">${sub.title}</span>
+            </div>
+            <span class="text-xs text-slate-300 font-semibold font-mono">Bobot: ${sub.bobot}%</span>
+          </div>
+        `;
+
+        const paramsList = document.createElement('div');
+        paramsList.className = 'divide-y divide-slate-100 p-2 bg-slate-50';
+
+        sub.parameters.forEach(p => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'p-3 bg-white rounded-lg border border-slate-200 my-2 space-y-2';
+
+          itemDiv.innerHTML = `
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="font-mono text-xs font-bold text-blue-800 bg-blue-100 px-2 py-0.5 rounded">${p.id}</span>
+                <span class="font-bold text-sm text-slate-900">${p.title}</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-600 font-mono">Bobot: ${p.bobot}</span>
+            </div>
+
+            <p class="text-xs text-slate-600 bg-slate-50 p-2 rounded border border-slate-100">${p.kriteria}</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 pt-1 text-xs">
+              ${[1, 2, 3, 4, 5].map(s => `
+                <div class="p-2 rounded border border-slate-200 bg-slate-50/70">
+                  <div class="font-bold text-slate-800 mb-0.5 text-[11px]">Skor ${s}:</div>
+                  <div class="text-[10px] text-slate-600 leading-tight">${p.rubrik[s]}</div>
+                </div>
+              `).join('')}
+            </div>
+
+            <div class="text-[11px] text-slate-500 pt-1">
+              <span class="font-semibold text-slate-700">Dokumen Bukti Fisik:</span>
+              ${p.dokumen.map(d => `<span class="inline-block bg-slate-100 px-1.5 py-0.5 rounded text-[10px] text-slate-700 mr-1 mt-1 border border-slate-200">• ${d}</span>`).join('')}
+            </div>
+          `;
+          paramsList.appendChild(itemDiv);
+        });
+
+        subSection.innerHTML = subHeader;
+        subSection.appendChild(paramsList);
+        container.appendChild(subSection);
+      });
+    }
+
+    // 15. UPDATE PRINT PREVIEW CONTENT
+    function updatePrintPreviewContent(calc) {
+      document.getElementById('printUnitName').textContent = appState.meta.unitName || '-';
+      document.getElementById('printAuditorName').textContent = appState.meta.auditorName || '-';
+      document.getElementById('printEvaluationDate').textContent = formatIndonesianDate(appState.meta.evaluationDate) || '-';
+      document.getElementById('printYear').textContent = appState.meta.evaluationYear || '2026';
+      document.querySelectorAll('.print-year').forEach(el => el.textContent = appState.meta.evaluationYear || '2026');
+
+      document.getElementById('printTotalScore').textContent = calc.totalScore.toFixed(2);
+      document.getElementById('printPercentage').textContent = `${calc.overallPercentage.toFixed(2)}%`;
+      document.getElementById('printLevelBadge').textContent = calc.overallLevel.name;
+
+      // Table Summary in print
+      const pSummaryTbody = document.getElementById('printSummaryTableBody');
+      if (pSummaryTbody) {
+        pSummaryTbody.innerHTML = '';
+        calc.subunsurResults.forEach(item => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td class="border border-slate-400 py-1 px-2 text-center">${item.id}</td>
+            <td class="border border-slate-400 py-1 px-3 font-semibold">${item.title}</td>
+            <td class="border border-slate-400 py-1 px-2 text-center font-mono">${item.bobot}%</td>
+            <td class="border border-slate-400 py-1 px-2 text-center font-mono">${item.maxScore.toFixed(1)}</td>
+            <td class="border border-slate-400 py-1 px-2 text-center font-mono font-bold">${item.actualScore.toFixed(1)}</td>
+            <td class="border border-slate-400 py-1 px-2 text-center font-mono font-bold">${item.percentage.toFixed(1)}%</td>
+            <td class="border border-slate-400 py-1 px-2 text-center font-medium">${item.level.shortName}</td>
+          `;
+          pSummaryTbody.appendChild(row);
+        });
+      }
+
+      document.getElementById('printTableTotalScore').textContent = calc.totalScore.toFixed(2);
+      document.getElementById('printTablePercentage').textContent = `${calc.overallPercentage.toFixed(2)}%`;
+      document.getElementById('printTableLevelStatus').textContent = calc.overallLevel.name;
+
+      // Table 18 Parameters in print
+      const pDetailTbody = document.getElementById('printDetailTableBody');
+      if (pDetailTbody) {
+        pDetailTbody.innerHTML = '';
+        ALL_PARAMETERS.forEach(p => {
+          const score = parseInt(appState.scores[p.id], 10) || 0;
+          const note = appState.notes[p.id] || '-';
+          const lineTotal = p.bobot * score;
+
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td class="border border-slate-400 py-1 px-1.5 text-center font-mono font-bold">${p.id}</td>
+            <td class="border border-slate-400 py-1 px-2">
+              <div class="font-bold text-slate-900">${p.title}</div>
+              <div class="text-[9px] text-slate-600 mt-0.5">${p.kriteria}</div>
+            </td>
+            <td class="border border-slate-400 py-1 px-1.5 text-center font-mono">${p.bobot}</td>
+            <td class="border border-slate-400 py-1 px-1.5 text-center font-mono font-bold ${score > 0 ? '' : 'text-slate-400'}">${score || '-'}</td>
+            <td class="border border-slate-400 py-1 px-1.5 text-center font-mono font-bold">${lineTotal.toFixed(1)}</td>
+            <td class="border border-slate-400 py-1 px-2 text-slate-800 text-[9px] italic">${note}</td>
+          `;
+          pDetailTbody.appendChild(row);
+        });
+      }
+
+      // Signatures
+      document.getElementById('printSignDate').textContent = formatIndonesianDate(appState.meta.evaluationDate) || '-';
+      document.getElementById('printSignHeadName').textContent = appState.meta.headName || 'Pimpinan Satuan Kerja';
+      document.getElementById('printSignHeadNIP').textContent = appState.meta.headNIP || '..................................';
+      document.getElementById('printSignAuditorName').textContent = appState.meta.leadAuditorName || 'Ketua Tim Evaluasi';
+      document.getElementById('printSignAuditorNIP').textContent = appState.meta.leadAuditorNIP || '..................................';
+    }
+
+    // 16. EXPORT TO EXCEL VIA SHEETJS
+    function exportToExcel() {
+      if (typeof XLSX === 'undefined') {
+        showToast('SheetJS sedang memuat, silakan coba sesaat lagi.', false);
+        return;
+      }
+
+      const calc = calculateMaturity();
+      const wb = XLSX.utils.book_new();
+
+      // ----- SHEET 1: SUMMARY -----
+      const summaryAOA = [
+        ["LEMBAR HASIL EVALUASI TINGKAT KEMATANGAN (MATURITAS) MANAJEMEN RISIKO TAHUN 2026"],
+        ["Berdasarkan Instrumen Pengawasan Internal 'Bobot Sept 2026' & Lembar 'Summary'"],
+        [""],
+        ["I. METADATA PENILAIAN"],
+        ["Satuan Kerja / Unit Kerja", appState.meta.unitName || "-"],
+        ["Tim Penilai / Auditor", appState.meta.auditorName || "-"],
+        ["Tanggal Pelaksanaan Evaluasi", formatIndonesianDate(appState.meta.evaluationDate) || "-"],
+        ["Tahun Penilaian", appState.meta.evaluationYear || "2026"],
+        [""],
+        ["II. HASIL AKHIR MATURITAS MANAJEMEN RISIKO"],
+        ["Total Nilai Akumulasi (Skala 500)", calc.totalScore.toFixed(2)],
+        ["Tingkat Capaian (%)", `${calc.overallPercentage.toFixed(2)}%`],
+        ["Predikat Tingkat Kematangan", calc.overallLevel.name],
+        ["Rentang Standar", calc.overallLevel.range],
+        ["Status Parameter Terisi", `${calc.filledCount} dari 18 Parameter`],
+        ["Rekomendasi Strategis", calc.overallLevel.recommendation],
+        [""],
+        ["III. TABEL REKAPITULASI 7 SUBUNSUR"],
+        ["No", "Subunsur Manajemen Risiko", "Bobot (%)", "Skor Maksimal", "Capaian Aktual", "Capaian (%)", "Status Level"]
+      ];
+
+      calc.subunsurResults.forEach(item => {
+        summaryAOA.push([
+          item.id,
+          item.title,
+          `${item.bobot}%`,
+          item.maxScore,
+          item.actualScore,
+          `${item.percentage.toFixed(2)}%`,
+          item.level.name
+        ]);
+      });
+
+      // Total row
+      summaryAOA.push([
+        "",
+        "TOTAL KESELURUHAN (NILAI AKHIR)",
+        "100%",
+        500,
+        calc.totalScore,
+        `${calc.overallPercentage.toFixed(2)}%`,
+        calc.overallLevel.name
+      ]);
+
+      const wsSummary = XLSX.utils.aoa_to_sheet(summaryAOA);
+      wsSummary['!cols'] = [
+        { wch: 6 },
+        { wch: 45 },
+        { wch: 14 },
+        { wch: 14 },
+        { wch: 16 },
+        { wch: 14 },
+        { wch: 24 }
+      ];
+      XLSX.utils.book_append_sheet(wb, wsSummary, "Summary");
+
+      // ----- SHEET 2: RINCIAN EVALUASI (18 PARAMETER) -----
+      const detailAOA = [
+        ["RINCIAN PENGUJIAN 18 PARAMETER EVALUASI MATURITAS MANAJEMEN RISIKO 2026"],
+        ["Satker:", appState.meta.unitName || "-"],
+        ["Tanggal:", formatIndonesianDate(appState.meta.evaluationDate) || "-"],
+        [""],
+        [
+          "No",
+          "Kode",
+          "Subunsur",
+          "Parameter Evaluasi",
+          "Bobot",
+          "Skor Penilaian (1-5)",
+          "Nilai Akhir (Bobot x Skor)",
+          "Dokumen Bukti Lengkap?",
+          "Catatan Evaluator / Bukti Fisik / Fakta Pengujian"
+        ]
+      ];
+
+      ALL_PARAMETERS.forEach((p, idx) => {
+        const score = parseInt(appState.scores[p.id], 10) || 0;
+        const note = appState.notes[p.id] || "";
+        const checkedArr = appState.docsChecked[p.id] || [];
+        const docStatus = `${checkedArr.length}/${p.dokumen.length} Dokumen`;
+        const lineTotal = p.bobot * score;
+
+        detailAOA.push([
+          idx + 1,
+          p.id,
+          `Subunsur ${p.subunsurId}`,
+          p.title,
+          p.bobot,
+          score || 0,
+          lineTotal,
+          docStatus,
+          note
+        ]);
+      });
+
+      const wsDetail = XLSX.utils.aoa_to_sheet(detailAOA);
+      wsDetail['!cols'] = [
+        { wch: 5 },
+        { wch: 8 },
+        { wch: 14 },
+        { wch: 48 },
+        { wch: 8 },
+        { wch: 20 },
+        { wch: 24 },
+        { wch: 22 },
+        { wch: 45 }
+      ];
+      XLSX.utils.book_append_sheet(wb, wsDetail, "Rincian Evaluasi");
+
+      // Sanitize satker name for filename
+      const safeSatker = (appState.meta.unitName || 'Satker').replace(/[^a-zA-Z0-9_-]/g, '_').substring(0, 30);
+      const filename = `Maturitas_MR_2026_${safeSatker}_${appState.meta.evaluationDate || '2026'}.xlsx`;
+
+      XLSX.writeFile(wb, filename);
+      showToast(`File Excel '${filename}' berhasil diunduh!`);
+    }
+
+    // 17. LOAD REALISTIC SAMPLE DEMO DATA
+    function loadDemoData() {
+      // Fills realistic Level 4 / High Level 3 government unit evaluation
+      appState.meta.unitName = "Balai Besar Standardisasi Pengawasan Obat dan Makanan";
+      appState.meta.auditorName = "Tim Auditor Inspektorat Wilayah II";
+      appState.meta.evaluationYear = "2026";
+      appState.meta.headName = "Drs. Budi Santoso, Apt., M.Epid.";
+      appState.meta.headNIP = "19720315 199803 1 004";
+      appState.meta.leadAuditorName = "Ratna Dewi, S.E., Ak., CA, CRMO";
+      appState.meta.leadAuditorNIP = "19830419 200604 2 001";
+      appState.meta.evaluationDate = getTodayDateString();
+
+      // Scores (aiming for ~74% - Level 4 Terkelola)
+      appState.scores = {
+        "1.1": 4, // 4 * 4 = 16
+        "1.2": 4, // 4 * 4 = 16
+        "1.3": 3, // 4 * 3 = 12 (Sub 1 = 44 / 60)
+        "2.1": 4, // 8 * 4 = 32
+        "2.2": 4, // 8 * 4 = 32 (Sub 2 = 64 / 80)
+        "3.1": 3, // 3 * 3 = 9  (Sub 3 = 9 / 15)
+        "4.1": 4, // 10 * 4 = 40
+        "4.2": 4, // 7 * 4 = 28
+        "4.3": 4, // 5 * 4 = 20 (Sub 4 = 88 / 110)
+        "5.1": 4, // 4 * 4 = 16
+        "5.2": 4, // 4 * 4 = 16
+        "5.3": 4, // 5 * 4 = 20
+        "5.4": 3, // 8 * 3 = 24
+        "5.5": 3, // 8 * 3 = 24 (Sub 5 = 100 / 145)
+        "6.1": 4, // 4 * 4 = 16
+        "6.2": 4, // 4 * 4 = 16 (Sub 6 = 32 / 40)
+        "7.1": 4, // 5 * 4 = 20
+        "7.2": 3  // 5 * 3 = 15 (Sub 7 = 35 / 50)
+      };
+
+      // Sample notes
+      appState.notes = {
+        "1.1": "Tersedia SK UPR No. KP.02.01/2026 dan alokasi anggaran DIPA Rp 85.000.000 untuk kegiatan bimtek dan pemantauan MR.",
+        "1.2": "Notula rapat pimpinan Triwulan I & II telah memuat telaahan profil risiko operasional dan pengawasan barang beredar.",
+        "1.3": "Telah tercantum pada Perjanjian Kinerja Eselon II dan III, perlu percepatan cascading ke level JF Madya.",
+        "2.1": "8 pegawai telah bersertifikat CRMO dan 15 staf telah mengikuti in-house training pemetaan risiko Mei 2026.",
+        "2.2": "Survei budaya risiko menunjukkan skor pemahaman 78.4%. Pegawai lini depan proaktif mengisi formulir pelaporan insiden.",
+        "3.1": "Terdapat MoU dengan Pemerintah Daerah dan Kepolisian Daerah terkait pengawasan terpadu.",
+        "4.1": "Keputusan Kepala Badan tentang Kebijakan MR dan Pedoman Selera Risiko telah ditetapkan secara mutakhir.",
+        "4.2": "Register Risiko 2026 mencakup 24 sasaran operasional dengan formulasi 3 elemen Causa-Event-Impact lengkap.",
+        "4.3": "Titik kendali risiko telah tertuang pada 18 SOP pelayanan publik dan sertifikasi pengujian laboratorium.",
+        "5.1": "Matriks 5x5 dampak dan probabilitas diterapkan secara konsisten pada seluruh 32 risiko teridentifikasi.",
+        "5.2": "Peta risiko (Heat Map) telah disetujui pimpinan satker, menetapkan 5 Top Risks prioritas.",
+        "5.3": "Formulir RTP telah memuat PIC, batas waktu, dan kebutuhan sarana pengujian khusus.",
+        "5.4": "Realisasi tindak pengendalian mencapai 72% pada akhir Triwulan III 2026.",
+        "5.5": "Penurunan residual risk terbukti pada 3 risiko prioritas, zero accident pengujian laboratorium.",
+        "6.1": "Kanal WBS terintegrasi dengan portal resmi APIP dan media WhatsApp hotline pengaduan.",
+        "6.2": "Sosialisasi dilaksanakan saat apel bulanan, booklet saku MR, dan intranet satker.",
+        "7.1": "Laporan pemantauan triwulanan telah disusun secara disiplin oleh sekretariat UPR.",
+        "7.2": "Reviu berkala dilakukan oleh Inspektorat Wilayah II, rekomendasi dalam proses tindak lanjut."
+      };
+
+      // Documents checked
+      appState.docsChecked = {
+        "1.1": [0, 1, 2, 3],
+        "1.2": [0, 1, 2],
+        "1.3": [0, 1],
+        "2.1": [0, 1, 2],
+        "2.2": [0, 1, 2],
+        "3.1": [0, 1],
+        "4.1": [0, 1, 2, 3],
+        "4.2": [0, 1, 2, 3],
+        "4.3": [0, 1, 2],
+        "5.1": [0, 1, 2],
+        "5.2": [0, 1, 2],
+        "5.3": [0, 1, 2],
+        "5.4": [0, 1, 2],
+        "5.5": [0, 1],
+        "6.1": [0, 1, 2],
+        "6.2": [0, 1, 2],
+        "7.1": [0, 1, 2],
+        "7.2": [0, 1, 2]
+      };
+
+      saveToLocalStorage();
+      loadFromLocalStorage();
+      renderEvaluationForm();
+      refreshCalculationsAndUI();
+      showToast('Data demo berhasil dimuat!');
+
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 50,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+    }
+
+    // 18. RESET FORM HANDLER
+    function resetAllData() {
+      appState.scores = {};
+      appState.notes = {};
+      appState.docsChecked = {};
+      saveToLocalStorage();
+      renderEvaluationForm();
+      refreshCalculationsAndUI();
+      document.getElementById('modalResetConfirm').classList.add('hidden');
+      showToast('Seluruh data berhasil dikosongkan.');
+    }
+
+    // 19. TAB NAVIGATION CONTROLLER
+    function switchTab(tabId) {
+      const views = ['viewForm', 'viewSummary', 'viewRubrik', 'viewPrintPreview'];
+      views.forEach(v => {
+        const el = document.getElementById(v);
+        if (el) el.classList.add('hidden');
+      });
+
+      const buttons = [
+        { id: 'tabBtnForm', view: 'viewForm' },
+        { id: 'tabBtnSummary', view: 'viewSummary' },
+        { id: 'tabBtnRubrik', view: 'viewRubrik' },
+        { id: 'tabBtnPrintPreview', view: 'viewPrintPreview' }
+      ];
+
+      buttons.forEach(b => {
+        const btn = document.getElementById(b.id);
+        if (btn) {
+          if (b.view === tabId) {
+            btn.className = 'tab-button border-b-2 border-blue-600 text-blue-600 font-semibold text-sm px-4 py-3 whitespace-nowrap flex items-center gap-2';
+          } else {
+            btn.className = 'tab-button border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm px-4 py-3 whitespace-nowrap flex items-center gap-2 transition';
+          }
+        }
+      });
+
+      const activeView = document.getElementById(tabId);
+      if (activeView) activeView.classList.remove('hidden');
+
+      // Subunsur filter is only visible in Form view
+      const filterCont = document.getElementById('filterContainer');
+      if (filterCont) {
+        filterCont.style.display = tabId === 'viewForm' ? 'flex' : 'none';
+      }
+
+      // If switching to summary or print preview, update calculations
+      if (tabId === 'viewSummary' || tabId === 'viewPrintPreview') {
+        refreshCalculationsAndUI();
+      }
+    }
+
+    // 20. INITIALIZATION & EVENT LISTENERS
+    document.addEventListener('DOMContentLoaded', () => {
+      // Load saved state
+      loadFromLocalStorage();
+
+      // Render evaluation form
+      renderEvaluationForm();
+
+      // Render Rubrik reference
+      renderRubrikReferenceView();
+
+      // Initial calculation & UI refresh
+      refreshCalculationsAndUI();
+
+      // Input changes listeners for metadata
+      ['inputEvaluationDate', 'inputUnitName', 'inputAuditorName', 'inputEvaluationYear', 'inputHeadName', 'inputHeadNIP', 'inputLeadAuditorName', 'inputLeadAuditorNIP'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', () => {
+            saveToLocalStorage();
+            updateDateLabel();
+            refreshCalculationsAndUI();
+          });
+        }
+      });
+
+      // Subunsur filter dropdown
+      const subFilter = document.getElementById('selectSubunsurFilter');
+      if (subFilter) {
+        subFilter.addEventListener('change', () => {
+          renderEvaluationForm();
+        });
+      }
+
+      // Tab buttons
+      document.getElementById('tabBtnForm').addEventListener('click', () => switchTab('viewForm'));
+      document.getElementById('tabBtnSummary').addEventListener('click', () => switchTab('viewSummary'));
+      document.getElementById('tabBtnRubrik').addEventListener('click', () => switchTab('viewRubrik'));
+      document.getElementById('tabBtnPrintPreview').addEventListener('click', () => switchTab('viewPrintPreview'));
+      document.getElementById('btnJumpToSummary').addEventListener('click', () => switchTab('viewSummary'));
+
+      // Action buttons
+      document.getElementById('btnSaveDraft').addEventListener('click', () => {
+        saveToLocalStorage();
+        showToast('Draf penilaian berhasil disimpan!');
+      });
+
+      document.getElementById('btnLoadDemo').addEventListener('click', () => {
+        loadDemoData();
+      });
+
+      document.getElementById('btnExportExcel').addEventListener('click', () => {
+        exportToExcel();
+      });
+
+      document.getElementById('btnExportSummaryExcel').addEventListener('click', () => {
+        exportToExcel();
+      });
+
+      document.getElementById('btnPrint').addEventListener('click', () => {
+        switchTab('viewPrintPreview');
+        setTimeout(() => {
+          window.print();
+        }, 200);
+      });
+
+      document.getElementById('btnPrintFromPreview').addEventListener('click', () => {
+        window.print();
+      });
+
+      // Reset modal triggers
+      document.getElementById('btnReset').addEventListener('click', () => {
+        document.getElementById('modalResetConfirm').classList.remove('hidden');
+      });
+      document.getElementById('btnCancelReset').addEventListener('click', () => {
+        document.getElementById('modalResetConfirm').classList.add('hidden');
+      });
+      document.getElementById('btnConfirmReset').addEventListener('click', () => {
+        resetAllData();
+      });
+
+      // Keyboard shortcuts
+      window.addEventListener('keydown', (e) => {
+        // ESC closes modals
+        if (e.key === 'Escape') {
+          document.getElementById('modalDetail').classList.add('hidden');
+          document.getElementById('modalResetConfirm').classList.add('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

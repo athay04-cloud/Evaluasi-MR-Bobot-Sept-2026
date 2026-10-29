@@ -1,0 +1,6 @@
+{
+  "name": "SIMATUR-MR 2026 - Evaluasi Maturitas Manajemen Risiko",
+  "description": "Sistem Informasi Penilaian & Evaluasi Tingkat Kematangan (Maturitas) Manajemen Risiko 2026 berdasarkan instrumen evaluasi pengawasan internal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
